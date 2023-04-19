@@ -24,9 +24,12 @@ describe('Groups', () => {
 
     it("should getGroups", async () => {
 
-        const getGroups = await groups.getGroups()
 
-        expect(getGroups).to.be.an('object');
+        const getGroupStub = sandbox.stub(groups, 'getGroups').resolves();
+
+        await groups.getGroups()
+
+        expect(getGroupStub.calledOnce).to.be.true;
     })
 
     it("should create groups", async () => {
