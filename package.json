@@ -1,0 +1,29 @@
+{
+  "name": "ourvoice-node-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "TIC-AGRO",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-unfetch": "^4.0.2",
+    "ts-mockito": "^2.6.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "ts-sinon": "^2.0.2"
+  }
+}
