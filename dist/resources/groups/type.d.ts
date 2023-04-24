@@ -3,8 +3,8 @@ export declare type Group = {
     name: string;
     description: string;
     contacts: object;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
 };
 export declare type NewGroup = {
     name: string;

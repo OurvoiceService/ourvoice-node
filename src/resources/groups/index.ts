@@ -22,14 +22,13 @@ export class Groups extends Base{
         })
     }
 
- 
     deleteGroup(id: string): Promise<any>{
         return  this.invoke(`/${resource}/${id}`, {
             method: "DELETE"
         })
     }
 
-    updateGroup(id: string, group: Group): Promise<Group>{
+    updateGroup(id: string, group: Partial<Group>): Promise<Group>{
         return  this.invoke(`/${resource}/${id}`, {
             method: "PATCH",
             body: JSON.stringify(group)

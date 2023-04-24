@@ -1,31 +1,38 @@
 import { Base } from "../base";
-import { NewVoice, Voice, } from "./type";
+import { Voice,  NewVoice } from "./type";
 
-const resource = "voices"
+const resources = "calls"
+const resource = "call"
+const voice = "voices"
+export class Voices extends Base{
 
-export class Voices extends Base {
-
-    getVoiceById(id: string): Promise<Voice> {
-        return this.invoke(`/${resource}/${id}`)
-    }
-
-    getVoices(): Promise<any> {
-        return this.invoke(`/voices`, {
-            method: 'GET'
+    getVoices(): Promise<any>{
+        return this.invoke(`/${voice}`, {
+            method: "GET"
         })
     }
-
-    sendVoice(newVoice: NewVoice): Promise<Voice> {
+    
+    sendVoiceCall(newVoice: NewVoice): Promise<Voice>{
+ 
         return this.invoke(`/${resource}`, {
-            method: "POST",
+            method: "POST", 
             body: JSON.stringify(newVoice)
         })
     }
 
-
-    deleteVoice(id: string): Promise<Voice> {
-        return this.invoke(`/${resource}/${id}`,{
-            method: "DELETE",
+    getCalls(): Promise<any>{
+ 
+        return this.invoke(`/${resources}`, {
+            method: "GET", 
         })
     }
+
+    deleteCall(id: string): Promise<any>{
+ 
+        return this.invoke(`/${resources}/${id}`, {
+            method: "DELETE", 
+            body: JSON.stringify(id)
+        })
+    }
+
 }

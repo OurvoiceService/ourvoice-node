@@ -1,8 +1,8 @@
 import { Base } from "../base";
-import { NewVoice, Voice } from "./type";
+import { Voice, NewVoice } from "./type";
 export declare class Voices extends Base {
-    getVoiceById(id: string): Promise<Voice>;
     getVoices(): Promise<any>;
-    sendVoice(newVoice: NewVoice): Promise<Voice>;
-    deleteVoice(id: string): Promise<Voice>;
+    sendVoiceCall(newVoice: NewVoice): Promise<Voice>;
+    getCalls(): Promise<any>;
+    deleteCall(id: string): Promise<any>;
 }

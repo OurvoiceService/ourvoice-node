@@ -5,5 +5,5 @@ export declare class Groups extends Base {
     getGroups(): Promise<any>;
     createGroup(newGroup: NewGroup): Promise<Group>;
     deleteGroup(id: string): Promise<any>;
-    updateGroup(id: string, group: Group): Promise<Group>;
+    updateGroup(id: string, group: Partial<Group>): Promise<Group>;
 }

@@ -13,7 +13,7 @@ describe('sms', () => {
     beforeEach(() => {
         sandbox = sinon.createSandbox()
         sms = new SMS({
-            apiKey: "1|vv85uaUEicKoB6sFQlcBpIFBfHIfS03EQ4cDIBgtBiePuCjXDRpuSLakUWjhY8KafJc5mFkGXK8uX8n36qMgtml91CFZotuSbhCLAt4k3sTQ6dS2yQHd9ekupeNgx8wSk1m81cO6YurJam5q5alcLGHjnxYFjKqIfVQqmBI4MGv4PWVT5MXVX2pjRW88GftX5GgyYcs4cBgkEmj1HHfq9cQZ3csBOXd6KvwWdZjXqeNA7Xad"
+            apiKey: "Api token"
         })
     });
 
@@ -48,7 +48,7 @@ describe('sms', () => {
     })
 
 
-    it('get sms by id', async ()=> {
+    it(' should get sms by id', async ()=> {
         
         const fakeSmsId = faker.datatype.uuid();
         const fakeSms: Sms = {
@@ -73,6 +73,21 @@ describe('sms', () => {
         //expect(result["data"]).to.be.an('object');
 
     })
+
+    it('should delete sms', async ()=> {
+        
+        const fakeSmsId = faker.datatype.uuid();
+      
+        const deleteSmsStub = sandbox.stub(sms, 'deleteSms').resolves();
+
+        await sms.deleteSms(fakeSmsId);
+
+        expect(deleteSmsStub.calledOnceWithExactly(fakeSmsId)).to.be.true;
+
+        //expect(result["data"]).to.be.an('object');
+
+    })
+
 });
 
 function now(): any {

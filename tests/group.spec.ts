@@ -13,7 +13,7 @@ describe('Groups', () => {
     beforeEach(() => {
         sandbox = sinon.createSandbox()
         groups = new Groups({
-            apiKey: "1|vv85uaUEicKoB6sFQlcBpIFBfHIfS03EQ4cDIBgtBiePuCjXDRpuSLakUWjhY8KafJc5mFkGXK8uX8n36qMgtml91CFZotuSbhCLAt4k3sTQ6dS2yQHd9ekupeNgx8wSk1m81cO6YurJam5q5alcLGHjnxYFjKqIfVQqmBI4MGv4PWVT5MXVX2pjRW88GftX5GgyYcs4cBgkEmj1HHfq9cQZ3csBOXd6KvwWdZjXqeNA7Xad"
+            apiKey: "Api Token"
         })
     });
 
@@ -22,7 +22,7 @@ describe('Groups', () => {
     });
 
 
-    it("should getGroups", async () => {
+    it("should get all Groups", async () => {
 
 
         const getGroupStub = sandbox.stub(groups, 'getGroups').resolves();
@@ -42,7 +42,6 @@ describe('Groups', () => {
                 "totalCount": 0,
                 "href": faker.internet.url()
             },
-            //created_at: faker.date.(),
             updated_at: "2023-04-14T16:39:56.000000Z",
             created_at: "2023-04-14T16:39:56.000000Z"
         }
@@ -50,13 +49,55 @@ describe('Groups', () => {
             name: fakeGroup.name,
             description: fakeGroup.description
         }
-        const saveStub = sandbox.stub(groups, 'createGroup').resolves();
+        const saveStub =  sandbox.stub(groups, 'createGroup').resolves();
 
         await groups.createGroup(newGroup);
+
+        
+       // expect(saveStub).to.have.property('data');
 
         expect(saveStub.calledOnce).to.be.true;
     })
 
+    it("should get group by id", async () => {
+
+        const fakeGroupId = faker.datatype.uuid()
+       
+        const getGroupByIdStub = sandbox.stub(groups, 'getGroupById').resolves();
+
+        await groups.getGroupById(fakeGroupId)
+
+        expect(getGroupByIdStub.calledOnceWithExactly(fakeGroupId)).to.be.true;
+    })
+    it("should update group", async ()=> {
+        
+        const fakeGroupId = faker.datatype.uuid()
+        const newGroup: Group = {
+            id:fakeGroupId,
+            name: faker.datatype.string(),
+            description: faker.datatype.string(),
+            contacts: faker.datatype.json,
+        }
+
+        const updateGroupStub = sandbox.stub(groups, 'updateGroup').resolves();
+
+        await groups.updateGroup(fakeGroupId, newGroup)
+
+        expect(updateGroupStub.calledOnce).to.be.true;
+
+    })
+
+
+    it("should delete group", async ()=> {
+        
+        const fakeGroupId = faker.datatype.uuid()
+
+        const deleteGroupStub = sandbox.stub(groups, 'deleteGroup').resolves();
+
+        await groups.deleteGroup(fakeGroupId)
+
+        expect(deleteGroupStub.calledOnce).to.be.true;
+    })
 });
 
 function now(): any {
