@@ -17,12 +17,14 @@ class Base {
             "Authorization": `Bearer ${this.apikey}`,
         };
         const config = Object.assign(Object.assign({}, options), { headers });
-        const response = await (0, isomorphic_unfetch_1.default)(url, config);
+        let response = await (0, isomorphic_unfetch_1.default)(url, config);
         if (response.ok) {
             return response.json();
         }
         else {
-            throw new Error(JSON.parse(response.statusText));
+            let responseData = await response.json();
+            responseData.status = response.status;
+            return responseData;
         }
     }
 }

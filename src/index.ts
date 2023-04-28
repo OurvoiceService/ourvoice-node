@@ -12,8 +12,7 @@ export class OurVoice{
     campaign: Campaigns
     contact: Contacts
     voice: Voices
-
-
+    
     constructor(config: {apiKey: string}){
         this.group = new Groups(config)
         this.sms = new SMS(config)

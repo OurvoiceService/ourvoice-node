@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { NewCampaign, Campaign, } from "./type";
+import { NewCampaign, Campaign, CampaignList, } from "./type";
 
 const resource = "campaigns"
 export class Campaigns extends Base {
@@ -8,7 +8,7 @@ export class Campaigns extends Base {
         return this.invoke(`/${resource}/${id}`)
     }
 
-    getCampaigns(): Promise<any> {
+    getCampaigns(): Promise<CampaignList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })

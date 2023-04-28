@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { Contact,  NewContact, NewContactGroup } from './type';
+import { Contact,  ContactList,  NewContact, NewContactGroup } from './type';
 
 const resources = "contacts"
 export class Contacts extends Base{
@@ -8,7 +8,7 @@ export class Contacts extends Base{
         return  this.invoke(`/${resources}/${id}`)
     }
 
-    getContacts(): Promise<any>{
+    getContacts(): Promise<ContactList>{
         return this.invoke(`/${resources}`, {
             method: 'GET'
         })

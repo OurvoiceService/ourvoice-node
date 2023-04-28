@@ -1,3 +1,4 @@
+type smsStatus = "delivered" | "undelivered" | "queued";
 export declare type Sms = {
     id: string;
     account_id: string;
@@ -5,7 +6,7 @@ export declare type Sms = {
     from: string;
     to: string;
     direction: string;
-    status: string;
+    status: smsStatus;
     cost: number;
     currency: string;
     created_at: Date;
@@ -16,3 +17,9 @@ export declare type NewSms = {
     sender_id: string;
     to: string[];
 };
+export declare type SmsList = {
+    data: Sms[];
+    links: object;
+    meta: object;
+};
+export {};

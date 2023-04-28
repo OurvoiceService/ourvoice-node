@@ -6,6 +6,8 @@ export declare type Contact = {
     phone_number: string
     language: string
     custom_fields?: CustomFields
+    created_at: Date
+    updated_at: Date
 }
 
 export declare type NewContact= {
@@ -14,8 +16,6 @@ export declare type NewContact= {
     phone_number: string
     language: string
 }
-
-
 
 export interface CustomFields {
     /** Custom fields of the contact. */
@@ -27,4 +27,11 @@ export interface CustomFields {
 
 export declare type NewContactGroup= {
     id: string
+}
+
+export declare type ContactList ={
+
+    data: Contact[]
+    links:object
+    meta: object
 }

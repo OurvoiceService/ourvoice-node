@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { NewSms, Sms, } from "./type";
+import { NewSms, Sms, SmsList, } from "./type";
 
 const resource = "messages"
 export class SMS extends Base {
@@ -8,7 +8,7 @@ export class SMS extends Base {
         return this.invoke(`/${resource}/${id}`)
     }
 
-    getSms(): Promise<any> {
+    getSms(): Promise<SmsList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })

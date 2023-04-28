@@ -1,5 +1,5 @@
 {
-  "name": "ourvoice-node-sdk",
+  "name": "ourvoice-node-sdk-test",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
