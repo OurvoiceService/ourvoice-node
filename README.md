@@ -19,10 +19,28 @@ npm install ourvoice-node-sdk-test --save
 
 The package needs to be configured with your account's secret key which is available in your [OurVoice Dashboard](https://app.getourvoice.com/developers/settings). Require it with the key's value:
 
-``` js
+``` ts
+// TypeScript
 import { OurVoice } from 'ourvoice-node-sdk-test';
 
 const client = new OurVoice({
+   apiKey: "YOUR API KEY TOKEN"
+})
+
+// get all groups
+
+client.groups.getGroups().then((groups) => {
+    
+   console.log(groups);
+})
+
+```
+``` js
+// JavaScript
+
+const sdk = require('ourvoice-node-sdk-test')
+
+const client = new sdk.OurVoice({
    apiKey: "YOUR API KEY TOKEN"
 })
 
