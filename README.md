@@ -12,7 +12,7 @@ See the [API docs](https://api-docs.getourvoice.com/).
 Install the package with:
 
 ``` bash
-npm install OurVoice-test --save
+npm install ourvoice-node-sdk-test --save
 ```
 
 ## Usage
@@ -20,10 +20,10 @@ npm install OurVoice-test --save
 The package needs to be configured with your account's secret key which is available in your [OurVoice Dashboard](https://app.getourvoice.com/developers/settings). Require it with the key's value:
 
 ``` js
-import { OurVoice } from 'ourvoice-node-sdk';
+import { OurVoice } from 'ourvoice-node-sdk-test';
 
 const client = new OurVoice({
-   apiKey: "API KEY"
+   apiKey: "YOUR API KEY TOKEN"
 })
 
 // get all groups
