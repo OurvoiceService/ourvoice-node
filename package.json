@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "TIC-AGRO",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "isomorphic-unfetch": "^4.0.2",
     "ts-mockito": "^2.6.1"

@@ -5,17 +5,17 @@ import { Account, AccountList, Balance } from './type';
 const resource = "accounts"
 export class Accounts extends Base {
 
-    retrieveAccount(id: string): Promise<Account> {
+    getAccountById(id: string): Promise<Account> {
         return this.invoke(`/${resource}/${id}`)
     }
 
-    retrieveAccounts(): Promise<AccountList> {
+    getAccounts(): Promise<AccountList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })
     }
 
-    retrieveCurrentAccountBalance(): Promise<Balance> {
+    getCurrentAccountBalance(): Promise<Balance> {
         return this.invoke('/current/balance', {
             method: 'GET'
         })

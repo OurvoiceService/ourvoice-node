@@ -33,8 +33,7 @@ export class Contacts extends Base{
     deleteContact(id: string): Promise<any>{
  
         return this.invoke(`/${resources}/${id}`, {
-            method: "DELETE", 
-            body: JSON.stringify(id)
+            method: "DELETE"
         })
     }
 }

@@ -1,5 +1,4 @@
 import { Campaigns } from "./resources/campaigns";
-import { Senders } from "./resources/senders";
 import { Voices } from "./resources/voices";
 import { Contacts } from "./resources/contacts";
 import { Groups } from "./resources/groups";
@@ -19,7 +18,6 @@ export class OurVoice {
     group: Groups
     message: Messages;
     number: Numbers
-    sender: Senders
     step: Steps
     voice: Voices
 
@@ -31,7 +29,6 @@ export class OurVoice {
         this.group = new Groups(config)
         this.message = new Messages(config)
         this.number = new Numbers(config)
-        this.sender = new Senders(config)
         this.step = new Steps(config)
         this.voice = new Voices(config)
     }

@@ -6,13 +6,13 @@ const resource = "flows"
 
 export class Flows extends Base {
 
-    retrieveFlow(id: string): Promise<Flow> {
+    getFlowById(id: string): Promise<Flow> {
         return this.invoke(`/${resource}/${id}`,  {
             method: 'GET'
         })
     }
 
-    retrieveFlows(): Promise<FlowList> {
+    getFlows(): Promise<FlowList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })

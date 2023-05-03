@@ -18,13 +18,8 @@ class Base {
         };
         const config = Object.assign(Object.assign({}, options), { headers });
         let response = await (0, isomorphic_unfetch_1.default)(url, config);
-        if (response.ok) {
-            return response.json();
-        }
-        else {
-            let responseData = await response.json();
-            return responseData.data;
-        }
+        let responseData = await response.json();
+        return responseData.data;
     }
 }
 exports.Base = Base;

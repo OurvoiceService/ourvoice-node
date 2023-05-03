@@ -1,13 +1,14 @@
-import { Sms } from "../messages/type"
+import { Message } from "../messages/type"
+import { Voice } from "../voices/type"
 
 export declare type Campaign = {
 
-    id: string
-    body: string
-    group: object
-    type: string
-    voices: any,
-    messages: Sms[]
+    id: string,
+    body: string,
+    group: object,
+    type: string,
+    voices?: Voice[],
+    messages?: Message[]
     name: string,
     repeat: string,
     start_date: Date,
@@ -16,12 +17,12 @@ export declare type Campaign = {
 }
 
 export declare type NewCampaign = {
-    body?: string
+    body?: string,
     sender_id?: string,
-    group?: object
-    type?: string
-    voices?: any,
-    messages?: any
+    group?: object,
+    type?: string,
+    voices?: Voice[],
+    messages?: Message[]
     name?: string,
     repeat?: string,
     start_date?: Date,
@@ -31,7 +32,7 @@ export declare type NewCampaign = {
 
 export declare type CampaignList ={
 
-    data: Campaign[]
-    links:object
+    data: Campaign[],
+    links:object,
     meta: object
 }

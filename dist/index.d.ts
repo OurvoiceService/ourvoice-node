@@ -1,16 +1,22 @@
-import { Campaigns } from "./resources/Campaigns";
-import { Senders } from "./resources/Senders";
-import { Voices } from "./resources/Voices";
+import { Campaigns } from "./resources/campaigns";
+import { Voices } from "./resources/voices";
 import { Contacts } from "./resources/contacts";
 import { Groups } from "./resources/groups";
-import { SMS } from "./resources/sms";
+import { Messages } from "./resources/messages";
+import { Flows } from "./resources/flows";
+import { Numbers } from "./resources/numbers";
+import { Steps } from "./resources/steps";
+import { Accounts } from "./resources/account";
 export declare class OurVoice {
-    group: Groups;
-    sms: SMS;
+    account: Accounts;
     campaign: Campaigns;
     contact: Contacts;
+    flow: Flows;
+    group: Groups;
+    message: Messages;
+    number: Numbers;
+    step: Steps;
     voice: Voices;
-    sender: Senders;
     constructor(config: {
         apiKey: string;
     });

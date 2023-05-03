@@ -5,20 +5,15 @@ const resource = "steps"
 export class Steps extends Base {
 
 
-    retrieveSteps(): Promise<StepList> {
+    getSteps(): Promise<StepList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })
     }
 
-    retrieveStep(id: string): Promise<StepList> {
+    getStepById(id: string): Promise<StepList> {
         return this.invoke(`/${resource}`, {
         })
     }
 
-    deleteSender(id: string): Promise<any> {
-        return this.invoke(`/${resource}/${id}`,{
-            method: "DELETE",
-        })
-    }
 }

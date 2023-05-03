@@ -1,20 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OurVoice = void 0;
-const Campaigns_1 = require("./resources/Campaigns");
-const Senders_1 = require("./resources/Senders");
-const Voices_1 = require("./resources/Voices");
+const campaigns_1 = require("./resources/campaigns");
+const voices_1 = require("./resources/voices");
 const contacts_1 = require("./resources/contacts");
 const groups_1 = require("./resources/groups");
-const sms_1 = require("./resources/sms");
+const messages_1 = require("./resources/messages");
+const flows_1 = require("./resources/flows");
+const numbers_1 = require("./resources/numbers");
+const steps_1 = require("./resources/steps");
+const account_1 = require("./resources/account");
 class OurVoice {
     constructor(config) {
-        this.group = new groups_1.Groups(config);
-        this.sms = new sms_1.SMS(config);
-        this.campaign = new Campaigns_1.Campaigns(config);
+        this.account = new account_1.Accounts(config);
+        this.campaign = new campaigns_1.Campaigns(config);
         this.contact = new contacts_1.Contacts(config);
-        this.voice = new Voices_1.Voices(config);
-        this.sender = new Senders_1.Senders(config);
+        this.flow = new flows_1.Flows(config);
+        this.group = new groups_1.Groups(config);
+        this.message = new messages_1.Messages(config);
+        this.number = new numbers_1.Numbers(config);
+        this.step = new steps_1.Steps(config);
+        this.voice = new voices_1.Voices(config);
     }
 }
 exports.OurVoice = OurVoice;

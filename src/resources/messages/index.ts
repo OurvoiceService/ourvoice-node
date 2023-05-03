@@ -1,28 +1,28 @@
 import { Base } from "../base";
-import { NewSms, Sms, SmsList, } from "./type";
+import { NewMessage, Message, MessageList, } from "./type";
 
 const resource = "messages"
 export class Messages extends Base {
 
-    getSmsById(id: string): Promise<Sms> {
+    getMessageById(id: string): Promise<Message> {
         return this.invoke(`/${resource}/${id}`)
     }
 
-    getSms(): Promise<SmsList> {
+    getMessage(): Promise<MessageList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })
     }
 
-    sendSms(newSms: NewSms): Promise<Sms> {
+    sendMessage(newMessage: NewMessage): Promise<Message> {
         return this.invoke(`/${resource}`, {
             method: "POST",
-            body: JSON.stringify(newSms)
+            body: JSON.stringify(newMessage)
         })
     }
 
 
-    deleteSms(id: string): Promise<Sms> {
+    deleteMessage(id: string): Promise<Message> {
         return this.invoke(`/${resource}/${id}`,{
             method: "DELETE",
         })

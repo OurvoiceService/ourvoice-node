@@ -13,10 +13,19 @@ export declare type Voice = {
     contact_id: string
 }
 
-export declare type NewVoice= {
+export declare type NewVoice = {
     to: Array<string>
     audio_url: string
-    
+
 }
 
+export declare type VoiceList = {
+
+    data: Voice[]
+    links: object
+    meta: object
+
+}
+
+export declare type VoiceIds = string[]
 

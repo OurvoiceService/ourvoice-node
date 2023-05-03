@@ -1,6 +1,6 @@
 import { Contact } from "../contacts/type"
 import { Group } from "../groups/type"
-import { Sms } from "../messages/type"
+import { Message } from "../messages/type"
 import { Voice } from "../voices/type"
 
 export declare type Flow = {
@@ -36,7 +36,7 @@ export declare type FlowExecution = {
     channel_id: string,
     flow_step: FlowStep
     contact?: Contact,
-    message?: Sms,
+    message?: Message,
     voice?: Voice,
     group: Group,
     data?: object,
