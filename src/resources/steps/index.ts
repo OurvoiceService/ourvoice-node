@@ -1,8 +1,8 @@
 import { Base } from "../base";
 import { StepList, Step } from "./type";
 
-const resource = "senders"
-export class Senders extends Base {
+const resource = "steps"
+export class Steps extends Base {
 
 
     retrieveSteps(): Promise<StepList> {
