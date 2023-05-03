@@ -38,7 +38,7 @@ client.groups.getGroups().then((groups) => {
 ``` js
 // JavaScript
 
-const sdk = require('ourvoice-node-sdk-test')
+const sdk = require('ourvoice-node')
 
 const client = new sdk.OurVoice({
    apiKey: "YOUR API KEY TOKEN"
