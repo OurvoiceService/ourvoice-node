@@ -1,4 +1,4 @@
-import { Sms } from "../sms/type"
+import { Sms } from "../messages/type"
 
 export declare type Campaign = {
 

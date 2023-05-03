@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OurVoice = void 0;
 const Campaigns_1 = require("./resources/Campaigns");
+const Senders_1 = require("./resources/Senders");
 const Voices_1 = require("./resources/Voices");
 const contacts_1 = require("./resources/contacts");
 const groups_1 = require("./resources/groups");
@@ -13,6 +14,7 @@ class OurVoice {
         this.campaign = new Campaigns_1.Campaigns(config);
         this.contact = new contacts_1.Contacts(config);
         this.voice = new Voices_1.Voices(config);
+        this.sender = new Senders_1.Senders(config);
     }
 }
 exports.OurVoice = OurVoice;

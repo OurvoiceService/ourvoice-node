@@ -1,23 +1,29 @@
-import { Campaigns } from "./resources/Campaigns";
-import { Voices } from "./resources/Voices";
+import { Campaigns } from "./resources/campaigns";
+import { Senders } from "./resources/senders";
+import { Voices } from "./resources/voices";
 import { Contacts } from "./resources/contacts";
 import { Groups } from "./resources/groups";
-import { SMS } from "./resources/sms";
+import { Messages } from "./resources/messages";
+import { Flows } from "./resources/flows";
 
 
-export class OurVoice{
+export class OurVoice {
 
     group: Groups
-    sms: SMS;
+    message: Messages;
     campaign: Campaigns
     contact: Contacts
     voice: Voices
-    
-    constructor(config: {apiKey: string}){
+    sender: Senders
+    flow: Flows
+
+    constructor(config: { apiKey: string }) {
         this.group = new Groups(config)
-        this.sms = new SMS(config)
+        this.message = new Messages(config)
         this.campaign = new Campaigns(config)
-        this.contact= new Contacts(config)
-        this.voice= new Voices(config)
+        this.contact = new Contacts(config)
+        this.voice = new Voices(config)
+        this.sender = new Senders(config)
+        this.flow = new Flows(config)
     }
 }

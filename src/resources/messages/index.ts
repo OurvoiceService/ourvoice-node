@@ -2,7 +2,7 @@ import { Base } from "../base";
 import { NewSms, Sms, SmsList, } from "./type";
 
 const resource = "messages"
-export class SMS extends Base {
+export class Messages extends Base {
 
     getSmsById(id: string): Promise<Sms> {
         return this.invoke(`/${resource}/${id}`)

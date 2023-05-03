@@ -23,8 +23,7 @@ class Base {
         }
         else {
             let responseData = await response.json();
-            responseData.status = response.status;
-            return responseData;
+            return responseData.data;
         }
     }
 }

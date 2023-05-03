@@ -27,17 +27,11 @@ export abstract class Base {
         }
 
         let response = await fetch(url, config)
-      
+
+        let responseData = await response.json();
         
-        if (response.ok) {
+        return responseData.data
 
-            return response.json()
-        } else {
-
-            let responseData = await response.json();
-            responseData.status = response.status
-            return responseData         
-        }
     }
 
 }
