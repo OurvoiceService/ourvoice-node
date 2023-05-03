@@ -12,7 +12,7 @@ See the [API docs](https://api-docs.getourvoice.com/).
 Install the package with:
 
 ``` bash
-npm install ourvoice-node-sdk-test --save
+npm install ourvoice-node --save
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ The package needs to be configured with your account's secret key which is avail
 
 ``` ts
 // TypeScript
-import { OurVoice } from 'ourvoice-node-sdk-test';
+import { OurVoice } from 'ourvoice-node';
 
 const client = new OurVoice({
    apiKey: "YOUR API KEY TOKEN"
