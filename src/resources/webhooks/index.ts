@@ -1,21 +1,21 @@
 import { Base } from "../base";
 
-import { NewWebhook, WebHook, WebHookList } from './type';
+import { NewWebhook, Webhook, WebhookList } from './type';
 
-const resource = "webhooks"
-export class WebHooks extends Base {
+const resource = "Webhooks"
+export class Webhooks extends Base {
 
-    getWebHookById(id: string): Promise<WebHook> {
+    getWebhookById(id: string): Promise<Webhook> {
         return this.invoke(`/${resource}/${id}`)
     }
 
-    getWebHooks(): Promise<WebHookList> {
+    getWebhooks(): Promise<WebhookList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })
     }
 
-    createWebHook(newWebhook: NewWebhook): Promise<WebHook>{
+    createWebhook(newWebhook: NewWebhook): Promise<Webhook>{
  
         return this.invoke(`/${resource}`, {
             method: "POST", 
@@ -23,7 +23,7 @@ export class WebHooks extends Base {
         })
     }
 
-    updateWebHook(id: string, updateWebhook: Partial<WebHook>): Promise<WebHook>{
+    updateWebhook(id: string, updateWebhook: Partial<Webhook>): Promise<Webhook>{
  
         return this.invoke(`/${resource}/${id}`, {
             method: "PUT", 
@@ -31,7 +31,7 @@ export class WebHooks extends Base {
         })
     }
 
-    deleteWebHook(id: string): Promise<any>{
+    deleteWebhook(id: string): Promise<any>{
  
         return this.invoke(`/${resource}/${id}`, {
             method: "DELETE"
