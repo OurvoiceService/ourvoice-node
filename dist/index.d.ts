@@ -7,16 +7,22 @@ import { Flows } from "./resources/flows";
 import { Numbers } from "./resources/numbers";
 import { Steps } from "./resources/steps";
 import { Accounts } from "./resources/account";
+import { WebHooks } from "./resources/webhooks";
+import { Subscriptions } from "./resources/subscriptions";
+import { Medias } from "./resources/medias";
 export declare class OurVoice {
     account: Accounts;
     campaign: Campaigns;
     contact: Contacts;
     flow: Flows;
     group: Groups;
+    media: Medias;
     message: Messages;
     number: Numbers;
     step: Steps;
     voice: Voices;
+    subscription: Subscriptions;
+    webhook: WebHooks;
     constructor(config: {
         apiKey: string;
     });
