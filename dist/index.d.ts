@@ -7,7 +7,7 @@ import { Flows } from "./resources/flows";
 import { Numbers } from "./resources/numbers";
 import { Steps } from "./resources/steps";
 import { Accounts } from "./resources/account";
-import { WebHooks } from "./resources/webhooks";
+import { Webhooks } from "./resources/webhooks";
 import { Subscriptions } from "./resources/subscriptions";
 import { Medias } from "./resources/medias";
 export declare class OurVoice {
@@ -22,7 +22,7 @@ export declare class OurVoice {
     step: Steps;
     voice: Voices;
     subscription: Subscriptions;
-    webhook: WebHooks;
+    Webhook: Webhooks;
     constructor(config: {
         apiKey: string;
     });

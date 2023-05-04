@@ -25,7 +25,7 @@ class OurVoice {
         this.step = new steps_1.Steps(config);
         this.voice = new voices_1.Voices(config);
         this.subscription = new subscriptions_1.Subscriptions(config);
-        this.webhook = new webhooks_1.WebHooks(config);
+        this.Webhook = new webhooks_1.Webhooks(config);
         this.media = new medias_1.Medias(config);
     }
 }
