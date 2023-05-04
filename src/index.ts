@@ -25,7 +25,7 @@ export class OurVoice {
     step: Steps
     voice: Voices
     subscription: Subscriptions
-    Webhook: Webhooks
+    webhook: Webhooks
 
     constructor(config: { apiKey: string }) {
         this.account = new Accounts(config)
@@ -38,7 +38,7 @@ export class OurVoice {
         this.step = new Steps(config)
         this.voice = new Voices(config)
         this.subscription = new Subscriptions(config)
-        this.Webhook = new Webhooks(config)
+        this.webhook = new Webhooks(config)
         this.media = new Medias(config)
     }
 }

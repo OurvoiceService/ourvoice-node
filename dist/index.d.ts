@@ -22,7 +22,7 @@ export declare class OurVoice {
     step: Steps;
     voice: Voices;
     subscription: Subscriptions;
-    Webhook: Webhooks;
+    webhook: Webhooks;
     constructor(config: {
         apiKey: string;
     });
