@@ -10,6 +10,9 @@ const flows_1 = require("./resources/flows");
 const numbers_1 = require("./resources/numbers");
 const steps_1 = require("./resources/steps");
 const account_1 = require("./resources/account");
+const webhooks_1 = require("./resources/webhooks");
+const subscriptions_1 = require("./resources/subscriptions");
+const medias_1 = require("./resources/medias");
 class OurVoice {
     constructor(config) {
         this.account = new account_1.Accounts(config);
@@ -21,6 +24,9 @@ class OurVoice {
         this.number = new numbers_1.Numbers(config);
         this.step = new steps_1.Steps(config);
         this.voice = new voices_1.Voices(config);
+        this.subscription = new subscriptions_1.Subscriptions(config);
+        this.webhook = new webhooks_1.Webhooks(config);
+        this.media = new medias_1.Medias(config);
     }
 }
 exports.OurVoice = OurVoice;

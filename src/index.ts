@@ -7,6 +7,9 @@ import { Flows } from "./resources/flows";
 import { Numbers } from "./resources/numbers";
 import { Steps } from "./resources/steps";
 import { Accounts } from "./resources/account";
+import { Webhooks } from "./resources/webhooks";
+import { Subscriptions } from "./resources/subscriptions";
+import { Medias } from "./resources/medias";
 
 
 export class OurVoice {
@@ -16,10 +19,13 @@ export class OurVoice {
     contact: Contacts
     flow: Flows
     group: Groups
+    media: Medias
     message: Messages;
     number: Numbers
     step: Steps
     voice: Voices
+    subscription: Subscriptions
+    webhook: Webhooks
 
     constructor(config: { apiKey: string }) {
         this.account = new Accounts(config)
@@ -31,5 +37,8 @@ export class OurVoice {
         this.number = new Numbers(config)
         this.step = new Steps(config)
         this.voice = new Voices(config)
+        this.subscription = new Subscriptions(config)
+        this.webhook = new Webhooks(config)
+        this.media = new Medias(config)
     }
 }
