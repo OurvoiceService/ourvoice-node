@@ -19,9 +19,3 @@ export declare type SubscriptionList = {
     links: object
     meta: object
 }
-
-export declare type UpdateSubscription = {
-    name?: string
-    media_url?: string
-    type?: string
-}

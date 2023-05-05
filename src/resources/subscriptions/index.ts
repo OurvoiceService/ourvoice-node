@@ -1,6 +1,6 @@
 import { Base } from "../base";
 
-import {Subscription, SubscriptionList, NewSubscription, UpdateSubscription } from './type';
+import {Subscription, SubscriptionList, NewSubscription } from './type';
 
 const resource = "subscriptions"
 export class Subscriptions extends Base {

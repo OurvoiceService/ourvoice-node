@@ -1,6 +1,6 @@
 import { Base } from "../base";
 
-import { NewWebhook, Webhook, WebhookList } from './type';
+import { NewWebhook, Webhook, WebhookList, UpdateWebhook } from './type';
 
 const resource = "Webhooks"
 export class Webhooks extends Base {
@@ -23,7 +23,7 @@ export class Webhooks extends Base {
         })
     }
 
-    updateWebhook(id: string, updateWebhook: Partial<Webhook>): Promise<Webhook>{
+    updateWebhook(id: string, updateWebhook: Partial<UpdateWebhook>): Promise<Webhook>{
  
         return this.invoke(`/${resource}/${id}`, {
             method: "PUT", 
