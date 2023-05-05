@@ -5,7 +5,7 @@ const resources = "calls"
 
 export class Voices extends Base{
 
-    getAccountVoices(): Promise<VoiceList>{
+    getVoices(): Promise<VoiceList>{
         return this.invoke(`/${resources}`, {
             method: "GET"
         })
@@ -20,7 +20,7 @@ export class Voices extends Base{
     }
 
 
-    deleteOneVoice(id: string): Promise<any>{
+    deleteVoice(id: string): Promise<any>{
  
         return this.invoke(`/${resources}/${id}`, {
             method: "DELETE", 
@@ -28,7 +28,7 @@ export class Voices extends Base{
         })
     }
 
-    deleteManyVoice(voicesIds: VoiceIds): Promise<any>{
+    deleteVoices(voicesIds: VoiceIds): Promise<any>{
         return this.invoke(`/${resources}/bulk`, {
             method: "DELETE", 
             body: JSON.stringify(voicesIds)
