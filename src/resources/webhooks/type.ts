@@ -22,4 +22,8 @@ export declare type WebhookList = {
     links: object
     meta: object
 }
-
+export declare type UpdateWebhook = {
+    url?: string,
+    secret_hash?: string,
+    event_types?: EventType[],
+}
