@@ -15,6 +15,17 @@ export declare type NewContact= {
     last_name: string
     phone_number: string
     language: string
+    custom_fields?: CustomFields
+
+}
+
+export declare type UpdateContact= {
+    first_name?: string
+    last_name?: string
+    phone_number?: string
+    language?: string
+    custom_fields?: CustomFields
+
 }
 
 export interface CustomFields {

@@ -1,10 +1,10 @@
-import { Voices } from "../src/resources/Voices";
-import {  } from "../src/resources/Voices/type"
+import { Voices } from "../src/resources/voices";
+import {  } from "../src/resources/voices/type"
 import sinon, { SinonStub } from 'sinon';
 import { expect, assert } from 'chai';
 
 import { faker } from "@faker-js/faker";
-describe('voice', () => {
+describe('Voice', () => {
 
     let voice: Voices;
 

@@ -18,7 +18,7 @@ export class Flows extends Base {
         })
     }
     
-    updateFlowStatus(id: string, updateAccount: Partial<UpdateFlowStatus>): Promise<Flow> {
+    updateFlowStatus(id: string, updateAccount: UpdateFlowStatus): Promise<Flow> {
         return this.invoke(`/${resource}`, {
             method: "PATCH",
             body: JSON.stringify(updateAccount)

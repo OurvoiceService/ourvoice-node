@@ -1,5 +1,5 @@
-import { Campaigns } from "../src/resources/Campaigns";
-import { Campaign, NewCampaign } from "../src/resources/Campaigns/type"
+import { Campaigns } from "../src/resources/campaigns";
+import { Campaign, NewCampaign } from "../src/resources/campaigns/type"
 import sinon, { SinonStub } from 'sinon';
 import { expect, assert } from 'chai';
 
@@ -36,15 +36,12 @@ describe('Compaign test', () => {
         const newCompagne: NewCampaign = {
             body: faker.datatype.string(),
             sender_id: faker.datatype.string(),
-            group: faker.datatype.json,
-            type: faker.datatype.string(),
-            voices: faker.internet.url(),
-            messages: faker.datatype.string(),
+            group_ids: [faker.datatype.uuid()],
+            type: 'sms',
             name: faker.name.fullName(),
-            repeat: faker.datatype.string(),
+            repeat: "never",
             start_date: faker.datatype.datetime(),
-            end_date: faker.datatype.datetime(),
-            status: faker.datatype.string(),
+            end_date: faker.datatype.datetime()
         }
 
         const createCompainStub = sandbox.stub(campaign, 'createCampaign').resolves();
@@ -68,23 +65,20 @@ describe('Compaign test', () => {
     it("should update compaign", async ()=> {
         
         const fakeCompaignId = faker.datatype.uuid()
-        const newCompagne: NewCampaign = {
+        const updateCompagne: NewCampaign = {
             body: faker.datatype.string(),
             sender_id: faker.datatype.string(),
-            group: faker.datatype.json,
-            type: faker.datatype.string(),
-            voices: faker.internet.url(),
-            messages: faker.datatype.string(),
+            group_ids: [faker.datatype.uuid()],
+            type: 'sms',
             name: faker.name.fullName(),
-            repeat: faker.datatype.string(),
+            repeat: "never",
             start_date: faker.datatype.datetime(),
-            end_date: faker.datatype.datetime(),
-            status: faker.datatype.string(),
+            end_date: faker.datatype.datetime()
         }
 
         const updateCompainStub = sandbox.stub(campaign, 'updateCampaign').resolves();
 
-        await campaign.updateCampaign(fakeCompaignId, newCompagne)
+        await campaign.updateCampaign(fakeCompaignId, updateCompagne)
 
         expect(updateCompainStub.calledOnce).to.be.true;
 
@@ -104,7 +98,4 @@ describe('Compaign test', () => {
 
 });
 
-function now(): any {
-    throw new Error("Function not implemented.");
-}
 
