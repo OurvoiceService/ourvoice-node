@@ -3,6 +3,8 @@ import { Group } from "../groups/type"
 import { Message } from "../messages/type"
 import { Voice } from "../voices/type"
 
+
+export  declare type FlowStatus = 'draft'| 'paused'| 'published'
 export declare type Flow = {
 
     id: string,
@@ -12,7 +14,7 @@ export declare type Flow = {
     flow_url: string,
     flow_execution: FlowExecution,
     type:string,
-    status: string,
+    status: FlowStatus,
     metadata:object
     created_at?: Date,
     updated_at?: Date,
@@ -21,7 +23,7 @@ export declare type Flow = {
 
 export declare type UpdateFlowStatus = {
 
-    status: string,
+    status: FlowStatus,
 
 }
 

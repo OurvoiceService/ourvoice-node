@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { Contact,  ContactList,  NewContact, NewContactGroup } from './type';
+import { Contact,  ContactList,  NewContact, NewContactGroup, UpdateContact } from './type';
 
 const resources = "contacts"
 export class Contacts extends Base{
@@ -22,7 +22,7 @@ export class Contacts extends Base{
         })
     }
 
-    updateContact(id: string, contactData: Partial<Contact>): Promise<Contact>{
+    updateContact(id: string, contactData: Partial<UpdateContact>): Promise<Contact>{
  
         return this.invoke(`/${resources}/${id}`, {
             method: "PUT", 

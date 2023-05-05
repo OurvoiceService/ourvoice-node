@@ -8,7 +8,7 @@ export class Messages extends Base {
         return this.invoke(`/${resource}/${id}`)
     }
 
-    getMessage(): Promise<MessageList> {
+    getMessages(): Promise<MessageList> {
         return this.invoke(`/${resource}`, {
             method: 'GET'
         })
@@ -20,7 +20,6 @@ export class Messages extends Base {
             body: JSON.stringify(newMessage)
         })
     }
-
 
     deleteMessage(id: string): Promise<Message> {
         return this.invoke(`/${resource}/${id}`,{
