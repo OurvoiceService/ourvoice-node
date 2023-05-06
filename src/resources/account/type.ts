@@ -1,9 +1,11 @@
+import {Subscription} from "../subscriptions/type";
+
 export declare type Account = {
   id: string;
   name: string;
   status: string;
   balance: number;
-  subscriptions: string[];
+  subscriptions: Subscription[];
   currency?: string;
   default_credit?: number;
   timezone: string;
