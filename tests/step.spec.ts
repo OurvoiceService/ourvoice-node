@@ -1,46 +1,39 @@
 import { Steps } from "../src/resources/steps";
-import sinon, { SinonStub } from 'sinon';
-import { expect, assert } from 'chai';
+import sinon, { SinonStub } from "sinon";
+import { expect, assert } from "chai";
 
 import { faker } from "@faker-js/faker";
-describe('Steps', () => {
+describe("Steps", () => {
+  let step: Steps;
 
-    let step: Steps;
+  let sandbox: sinon.SinonSandbox;
 
-    let sandbox: sinon.SinonSandbox;
-
-    beforeEach(() => {
-        sandbox = sinon.createSandbox()
-        step = new Steps({
-            apiKey: "Api Token"
-        })
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    step = new Steps({
+      apiKey: "Api Token",
     });
+  });
 
-    afterEach(() => {
-        sandbox.restore();
-    });
+  afterEach(() => {
+    sandbox.restore();
+  });
 
+  it("should get all Steps", async () => {
+    const getStepsStub = sandbox.stub(step, "getSteps").resolves();
 
-    it("should get all Steps", async () => {
+    await step.getSteps();
 
-        const getStepsStub = sandbox.stub(step, "getSteps").resolves();
+    expect(getStepsStub.calledOnce).to.be.true;
+  });
 
-        await step.getSteps()
+  it("should get step by id", async () => {
+    const fakeStepId = faker.datatype.uuid();
 
-        expect(getStepsStub.calledOnce).to.be.true;
-    })
+    const getStepByIdStub = sandbox.stub(step, "getStepById").resolves();
 
+    await step.getStepById(fakeStepId);
 
-    it("should get step by id", async () => {
-
-        const fakeStepId = faker.datatype.uuid()
-       
-        const getStepByIdStub = sandbox.stub(step, 'getStepById').resolves();
-
-        await step.getStepById(fakeStepId)
-
-        expect(getStepByIdStub.calledOnceWithExactly(fakeStepId)).to.be.true;
-    })
-
+    expect(getStepByIdStub.calledOnceWithExactly(fakeStepId)).to.be.true;
+  });
 });
-

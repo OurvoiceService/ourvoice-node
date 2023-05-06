@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "module": "commonjs",  
-    "declaration": true,    
-    "removeComments": true, 
-    "allowSyntheticDefaultImports": true, 
-    "target": "ES2017",   
-    "sourceMap": false,   
-    "outDir": "./dist",  
-    "baseUrl": "./",                 
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2017",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "baseUrl": "./",
     "incremental": true,
     "esModuleInterop": true
   },
-  "include":["src/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "tests", "lib", "**/*spec.ts"]
-
 }

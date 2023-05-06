@@ -1,46 +1,39 @@
 import { Numbers } from "../src/resources/numbers";
-import sinon, { SinonStub } from 'sinon';
-import { expect, assert } from 'chai';
+import sinon, { SinonStub } from "sinon";
+import { expect, assert } from "chai";
 
 import { faker } from "@faker-js/faker";
-describe('Numbers', () => {
+describe("Numbers", () => {
+  let number: Numbers;
 
-    let number: Numbers;
+  let sandbox: sinon.SinonSandbox;
 
-    let sandbox: sinon.SinonSandbox;
-
-    beforeEach(() => {
-        sandbox = sinon.createSandbox()
-        number = new Numbers({
-            apiKey: "Api Token"
-        })
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    number = new Numbers({
+      apiKey: "Api Token",
     });
+  });
 
-    afterEach(() => {
-        sandbox.restore();
-    });
+  afterEach(() => {
+    sandbox.restore();
+  });
 
+  it("should get all Numbers", async () => {
+    const getNumberStub = sandbox.stub(number, "getNumbers").resolves();
 
-    it("should get all Numbers", async () => {
+    await number.getNumbers();
 
+    expect(getNumberStub.calledOnce).to.be.true;
+  });
 
-        const getNumberStub = sandbox.stub(number, "getNumbers").resolves();
+  it("should get number by id", async () => {
+    const fakeNumberId = faker.datatype.uuid();
 
-        await number.getNumbers()
+    const getNumberByIdStub = sandbox.stub(number, "getNumberById").resolves();
 
-        expect(getNumberStub.calledOnce).to.be.true;
-    })
+    await number.getNumberById(fakeNumberId);
 
-
-    it("should get number by id", async () => {
-
-        const fakeNumberId = faker.datatype.uuid()
-       
-        const getNumberByIdStub = sandbox.stub(number, 'getNumberById').resolves();
-
-        await number.getNumberById(fakeNumberId)
-
-        expect(getNumberByIdStub.calledOnceWithExactly(fakeNumberId)).to.be.true;
-    })
+    expect(getNumberByIdStub.calledOnceWithExactly(fakeNumberId)).to.be.true;
+  });
 });
-

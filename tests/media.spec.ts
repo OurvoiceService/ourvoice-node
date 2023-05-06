@@ -1,88 +1,76 @@
 import { Medias } from "../src/resources/medias";
-import { Media, NewMedia, UpdateMedia } from "../src/resources/medias/type"
-import sinon, { SinonStub } from 'sinon';
-import { expect, assert } from 'chai';
+import { Media, NewMedia, UpdateMedia } from "../src/resources/medias/type";
+import sinon, { SinonStub } from "sinon";
+import { expect, assert } from "chai";
 
 import { faker } from "@faker-js/faker";
-describe('Medias', () => {
+describe("Medias", () => {
+  let media: Medias;
 
-    let media: Medias;
+  let sandbox: sinon.SinonSandbox;
 
-    let sandbox: sinon.SinonSandbox;
-
-    beforeEach(() => {
-        sandbox = sinon.createSandbox()
-        media = new Medias({
-            apiKey: "Api Token"
-        })
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    media = new Medias({
+      apiKey: "Api Token",
     });
+  });
 
-    afterEach(() => {
-        sandbox.restore();
-    });
+  afterEach(() => {
+    sandbox.restore();
+  });
 
+  it("should get all Medias", async () => {
+    const getMediaStub = sandbox.stub(media, "getMedias").resolves();
 
-    it("should get all Medias", async () => {
+    await media.getMedias();
 
+    expect(getMediaStub.calledOnce).to.be.true;
+  });
 
-        const getMediaStub = sandbox.stub(media, "getMedias").resolves();
+  it("should save media", async () => {
+    let fakeMedia: NewMedia = {
+      file: faker.datatype.string(),
+    };
+    const saveStub = sandbox.stub(media, "saveMedia").resolves();
 
-        await media.getMedias()
+    await media.saveMedia(fakeMedia);
 
-        expect(getMediaStub.calledOnce).to.be.true;
-    })
+    expect(saveStub.calledOnce).to.be.true;
+  });
 
-    it("should save media", async () => {
+  it("should get media by id", async () => {
+    const fakeMediaId = faker.datatype.uuid();
 
-        let fakeMedia: NewMedia = {
-            file: faker.datatype.string(),
-           
-        }
-        const saveStub =  sandbox.stub(media, 'saveMedia').resolves();
+    const getMediaByIdStub = sandbox.stub(media, "getMediaById").resolves();
 
-        await media.saveMedia(fakeMedia);
+    await media.getMediaById(fakeMediaId);
 
-        expect(saveStub.calledOnce).to.be.true;
-    })
+    expect(getMediaByIdStub.calledOnceWithExactly(fakeMediaId)).to.be.true;
+  });
 
-    it("should get media by id", async () => {
+  it("should update media", async () => {
+    const fakeMediaId = faker.datatype.uuid();
+    const mediaData: UpdateMedia = {
+      name: faker.datatype.string(),
+      media_url: faker.datatype.string(),
+      type: faker.datatype.string(),
+    };
 
-        const fakeMediaId = faker.datatype.uuid()
-       
-        const getMediaByIdStub = sandbox.stub(media, 'getMediaById').resolves();
+    const updateMediaStub = sandbox.stub(media, "updateMedia").resolves();
 
-        await media.getMediaById(fakeMediaId)
+    await media.updateMedia(fakeMediaId, mediaData);
 
-        expect(getMediaByIdStub.calledOnceWithExactly(fakeMediaId)).to.be.true;
-    })
+    expect(updateMediaStub.calledOnce).to.be.true;
+  });
 
-    it("should update media", async ()=> {
-        
-        const fakeMediaId = faker.datatype.uuid()
-        const mediaData: UpdateMedia = {
-            name: faker.datatype.string(),
-            media_url: faker.datatype.string(),
-            type: faker.datatype.string(),
-        }
+  it("should  delete media", async () => {
+    const fakeMediaId = faker.datatype.uuid();
 
-        const updateMediaStub = sandbox.stub(media, "updateMedia").resolves();
+    const deleteMediaStub = sandbox.stub(media, "deleteMedia").resolves();
 
-        await media.updateMedia(fakeMediaId, mediaData)
+    await media.deleteMedia(fakeMediaId);
 
-        expect(updateMediaStub.calledOnce).to.be.true;
-
-    })
-
-    it("should  delete media", async ()=> {
-        
-        const fakeMediaId = faker.datatype.uuid()
-      
-        const deleteMediaStub = sandbox.stub(media, "deleteMedia").resolves();
-
-        await media.deleteMedia(fakeMediaId)
-
-        expect(deleteMediaStub.calledOnce).to.be.true;
-    })
-
+    expect(deleteMediaStub.calledOnce).to.be.true;
+  });
 });
-

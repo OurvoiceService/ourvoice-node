@@ -1,71 +1,69 @@
 import { Subscriptions } from "../src/resources/subscriptions";
-import { NewSubscription } from "../src/resources/subscriptions/type"
-import sinon, { SinonStub } from 'sinon';
-import { expect, assert } from 'chai';
+import { NewSubscription } from "../src/resources/subscriptions/type";
+import sinon, { SinonStub } from "sinon";
+import { expect, assert } from "chai";
 
 import { faker } from "@faker-js/faker";
-describe('Subscriptions', () => {
+describe("Subscriptions", () => {
+  let subscription: Subscriptions;
 
-    let subscription: Subscriptions;
+  let sandbox: sinon.SinonSandbox;
 
-    let sandbox: sinon.SinonSandbox;
-
-    beforeEach(() => {
-        sandbox = sinon.createSandbox()
-        subscription = new Subscriptions({
-            apiKey: "Api Token"
-        })
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    subscription = new Subscriptions({
+      apiKey: "Api Token",
     });
+  });
 
-    afterEach(() => {
-        sandbox.restore();
-    });
+  afterEach(() => {
+    sandbox.restore();
+  });
 
+  it("should get all Subscriptions", async () => {
+    const getSubscriptionStub = sandbox
+      .stub(subscription, "getSubscriptions")
+      .resolves();
 
-    it("should get all Subscriptions", async () => {
+    await subscription.getSubscriptions();
 
+    expect(getSubscriptionStub.calledOnce).to.be.true;
+  });
 
-        const getSubscriptionStub = sandbox.stub(subscription, "getSubscriptions").resolves();
+  it("should create subscriptions", async () => {
+    let fakeSubscription: NewSubscription = {
+      plan_id: faker.datatype.uuid(),
+    };
 
-        await subscription.getSubscriptions()
+    const saveStub = sandbox.stub(subscription, "newSubscription").resolves();
 
-        expect(getSubscriptionStub.calledOnce).to.be.true;
-    })
+    await subscription.newSubscription(fakeSubscription);
 
-    it("should create subscriptions", async () => {
+    expect(saveStub.calledOnce).to.be.true;
+  });
 
-        let fakeSubscription: NewSubscription = {
-            plan_id: faker.datatype.uuid()
-        }
-      
-        const saveStub =  sandbox.stub(subscription, 'newSubscription').resolves();
+  it("should get subscription by id", async () => {
+    const fakeSubscriptionId = faker.datatype.uuid();
 
-        await subscription.newSubscription(fakeSubscription);
+    const getSubscriptionByIdStub = sandbox
+      .stub(subscription, "getSubscriptionById")
+      .resolves();
 
-        expect(saveStub.calledOnce).to.be.true;
-    })
+    await subscription.getSubscriptionById(fakeSubscriptionId);
 
-    it("should get subscription by id", async () => {
+    expect(getSubscriptionByIdStub.calledOnceWithExactly(fakeSubscriptionId)).to
+      .be.true;
+  });
 
-        const fakeSubscriptionId = faker.datatype.uuid()
-       
-        const getSubscriptionByIdStub = sandbox.stub(subscription, 'getSubscriptionById').resolves();
+  it("should  delete subscription", async () => {
+    const fakeSubscriptionId = faker.datatype.uuid();
 
-        await subscription.getSubscriptionById(fakeSubscriptionId)
+    const deleteSubscriptionStub = sandbox
+      .stub(subscription, "deleteSubscription")
+      .resolves();
 
-        expect(getSubscriptionByIdStub.calledOnceWithExactly(fakeSubscriptionId)).to.be.true;
-    })
+    await subscription.deleteSubscription(fakeSubscriptionId);
 
-    it("should  delete subscription", async ()=> {
-        
-        const fakeSubscriptionId = faker.datatype.uuid()
-      
-        const deleteSubscriptionStub = sandbox.stub(subscription, 'deleteSubscription').resolves();
-
-        await subscription.deleteSubscription(fakeSubscriptionId)
-
-        expect(deleteSubscriptionStub.calledOnce).to.be.true;
-    })
-
+    expect(deleteSubscriptionStub.calledOnce).to.be.true;
+  });
 });
-

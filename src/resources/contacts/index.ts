@@ -1,39 +1,44 @@
 import { Base } from "../base";
-import { Contact,  ContactList,  NewContact, NewContactGroup, UpdateContact } from './type';
+import {
+  Contact,
+  ContactList,
+  NewContact,
+  NewContactGroup,
+  UpdateContact,
+} from "./type";
 
-const resources = "contacts"
-export class Contacts extends Base{
+const resources = "contacts";
+export class Contacts extends Base {
+  getContactById(id: string): Promise<Contact> {
+    return this.invoke(`/${resources}/${id}`);
+  }
 
-    getContactById(id: string): Promise<Contact>{
-        return  this.invoke(`/${resources}/${id}`)
-    }
+  getContacts(): Promise<ContactList> {
+    return this.invoke(`/${resources}`, {
+      method: "GET",
+    });
+  }
 
-    getContacts(): Promise<ContactList>{
-        return this.invoke(`/${resources}`, {
-            method: 'GET'
-        })
-    }
+  createContact(newContact: NewContact): Promise<Contact> {
+    return this.invoke(`/${resources}`, {
+      method: "POST",
+      body: JSON.stringify(newContact),
+    });
+  }
 
-    createContact(newContact: NewContact): Promise<Contact>{
- 
-        return this.invoke(`/${resources}`, {
-            method: "POST", 
-            body: JSON.stringify(newContact)
-        })
-    }
+  updateContact(
+    id: string,
+    contactData: Partial<UpdateContact>
+  ): Promise<Contact> {
+    return this.invoke(`/${resources}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(contactData),
+    });
+  }
 
-    updateContact(id: string, contactData: Partial<UpdateContact>): Promise<Contact>{
- 
-        return this.invoke(`/${resources}/${id}`, {
-            method: "PUT", 
-            body: JSON.stringify(contactData)
-        })
-    }
-    
-    deleteContact(id: string): Promise<any>{
- 
-        return this.invoke(`/${resources}/${id}`, {
-            method: "DELETE"
-        })
-    }
+  deleteContact(id: string): Promise<any> {
+    return this.invoke(`/${resources}/${id}`, {
+      method: "DELETE",
+    });
+  }
 }

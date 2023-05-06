@@ -1,4 +1,4 @@
-# Ourvoice NodeJS Package 
+# Ourvoice NodeJS Package
 
 The Ourvoice Node library provides convenient access to the Ourvoice API from
 applications written in server-side JavaScript.
@@ -11,7 +11,7 @@ See the [API docs](https://api-docs.getourvoice.com/).
 
 Install the package with:
 
-``` bash
+```bash
 npm install ourvoice-node --save
 ```
 
@@ -19,36 +19,33 @@ npm install ourvoice-node --save
 
 The package needs to be configured with your account's secret key which is available in your [OurVoice Dashboard](https://app.getourvoice.com/developers/settings). Require it with the key's value:
 
-``` ts
+```ts
 // TypeScript
-import { OurVoice } from 'ourvoice-node';
+import { OurVoice } from "ourvoice-node";
 
 const client = new OurVoice({
-   apiKey: "YOUR API KEY TOKEN"
-})
+  apiKey: "YOUR API KEY TOKEN",
+});
 
 // get all groups
 
 client.groups.getGroups().then((groups) => {
-    
-   console.log(groups);
-})
-
+  console.log(groups);
+});
 ```
-``` js
+
+```js
 // JavaScript
 
-const sdk = require('ourvoice-node')
+const sdk = require("ourvoice-node");
 
 const client = new sdk.OurVoice({
-   apiKey: "YOUR API KEY TOKEN"
-})
+  apiKey: "YOUR API KEY TOKEN",
+});
 
 // get all groups
 
 client.groups.getGroups().then((groups) => {
-    
-   console.log(groups);
-})
-
+  console.log(groups);
+});
 ```

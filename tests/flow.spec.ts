@@ -1,79 +1,68 @@
 import { Flows } from "../src/resources/flows";
-import { Flow, UpdateFlowStatus } from "../src/resources/flows/type"
-import sinon, { SinonStub } from 'sinon';
-import { expect, assert } from 'chai';
+import { Flow, UpdateFlowStatus } from "../src/resources/flows/type";
+import sinon, { SinonStub } from "sinon";
+import { expect, assert } from "chai";
 
 import { faker } from "@faker-js/faker";
-describe('Flow', () => {
+describe("Flow", () => {
+  let flow: Flows;
 
-    let flow: Flows;
+  let sandbox: sinon.SinonSandbox;
 
-    let sandbox: sinon.SinonSandbox;
-
-    beforeEach(() => {
-        sandbox = sinon.createSandbox()
-        flow = new Flows({
-            apiKey: "Api token"
-        })
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    flow = new Flows({
+      apiKey: "Api token",
     });
+  });
 
-    afterEach(() => {
-        sandbox.restore();
-    });
+  afterEach(() => {
+    sandbox.restore();
+  });
 
+  it("should getFlows", async () => {
+    const getFlowStub = sandbox.stub(flow, "getFlows").resolves();
 
-    it("should getFlows", async () => {
+    await flow.getFlows();
 
-        const getFlowStub = sandbox.stub(flow, 'getFlows').resolves();
+    expect(getFlowStub.calledOnce).to.be.true;
+  });
 
-        await flow.getFlows()
+  it("should get flow by id", async () => {
+    const fakeFlowId = faker.datatype.uuid();
 
-        expect(getFlowStub.calledOnce).to.be.true;
+    const getFlowStub = sandbox.stub(flow, "getFlowById").resolves();
 
-    })
+    await flow.getFlowById(fakeFlowId);
 
+    expect(getFlowStub.calledOnceWithExactly(fakeFlowId)).to.be.true;
 
-    it('should get flow by id', async ()=> {
-        
-        const fakeFlowId = faker.datatype.uuid();
-      
-        const getFlowStub = sandbox.stub(flow, 'getFlowById').resolves();
+    //expect(result["data"]).to.be.an('object');
+  });
 
-        await flow.getFlowById(fakeFlowId);
+  it("should start flow", async () => {
+    const fakeFlowId = faker.datatype.uuid();
 
-        expect(getFlowStub.calledOnceWithExactly(fakeFlowId)).to.be.true;
+    const startFlowStub = sandbox.stub(flow, "startFlow").resolves();
 
-        //expect(result["data"]).to.be.an('object');
+    await flow.startFlow(fakeFlowId);
 
-    })
+    expect(startFlowStub.calledOnceWithExactly(fakeFlowId)).to.be.true;
+  });
 
-    it('should start flow', async ()=> {
-        
-        const fakeFlowId = faker.datatype.uuid();
-      
-        const startFlowStub = sandbox.stub(flow, 'startFlow').resolves();
+  it("should update flow status", async () => {
+    const fakeFlowId = faker.datatype.uuid();
 
-        await flow.startFlow(fakeFlowId);
+    const flowStatus: UpdateFlowStatus = {
+      status: "paused",
+    };
 
-        expect(startFlowStub.calledOnceWithExactly(fakeFlowId)).to.be.true;
+    const updateFlowStatusStub = sandbox
+      .stub(flow, "updateFlowStatus")
+      .resolves();
 
-    })
+    await flow.updateFlowStatus(fakeFlowId, flowStatus);
 
-    it('should update flow status', async ()=> {
-        
-        const fakeFlowId = faker.datatype.uuid();
-      
-        const flowStatus: UpdateFlowStatus = {
-          status: 'paused'
-        }
-
-        const updateFlowStatusStub = sandbox.stub(flow, 'updateFlowStatus').resolves();
-
-        await flow.updateFlowStatus(fakeFlowId, flowStatus);
-
-        expect(updateFlowStatusStub.calledOnce).to.be.true;
-    })
-
+    expect(updateFlowStatusStub.calledOnce).to.be.true;
+  });
 });
-
-

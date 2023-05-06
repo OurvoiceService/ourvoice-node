@@ -1,92 +1,86 @@
 import { Contacts } from "../src/resources/contacts";
-import { Contact, NewContact, UpdateContact } from "../src/resources/contacts/type"
-import sinon, { SinonStub } from 'sinon';
-import { expect, assert } from 'chai';
+import {
+  Contact,
+  NewContact,
+  UpdateContact,
+} from "../src/resources/contacts/type";
+import sinon, { SinonStub } from "sinon";
+import { expect, assert } from "chai";
 
 import { faker } from "@faker-js/faker";
-describe('Contacts', () => {
+describe("Contacts", () => {
+  let contact: Contacts;
 
-    let contact: Contacts;
+  let sandbox: sinon.SinonSandbox;
 
-    let sandbox: sinon.SinonSandbox;
-
-    beforeEach(() => {
-        sandbox = sinon.createSandbox()
-        contact = new Contacts({
-            apiKey: "Api Token"
-        })
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    contact = new Contacts({
+      apiKey: "Api Token",
     });
+  });
 
-    afterEach(() => {
-        sandbox.restore();
-    });
+  afterEach(() => {
+    sandbox.restore();
+  });
 
+  it("should get all Contacts", async () => {
+    const getContactStub = sandbox.stub(contact, "getContacts").resolves();
 
-    it("should get all Contacts", async () => {
+    await contact.getContacts();
 
+    expect(getContactStub.calledOnce).to.be.true;
+  });
 
-        const getContactStub = sandbox.stub(contact, "getContacts").resolves();
+  it("should create contact", async () => {
+    let fakeContact: NewContact = {
+      first_name: faker.name.fullName(),
+      last_name: faker.lorem.text(),
+      phone_number: "22991208623",
+      language: faker.lorem.word(),
+    };
 
-        await contact.getContacts()
+    const saveStub = sandbox.stub(contact, "createContact").resolves();
 
-        expect(getContactStub.calledOnce).to.be.true;
-    })
+    await contact.createContact(fakeContact);
 
-    it("should create contact", async () => {
+    expect(saveStub.calledOnce).to.be.true;
+  });
 
-        let fakeContact: NewContact = {
-            first_name: faker.name.fullName(),
-            last_name: faker.lorem.text(),
-            phone_number: "22991208623",
-            language: faker.lorem.word()
-        
-        }
-      
-        const saveStub =  sandbox.stub(contact, 'createContact').resolves();
+  it("should get contact by id", async () => {
+    const fakeContactId = faker.datatype.uuid();
 
-        await contact.createContact(fakeContact);
+    const getContactByIdStub = sandbox
+      .stub(contact, "getContactById")
+      .resolves();
 
-        expect(saveStub.calledOnce).to.be.true;
-    })
+    await contact.getContactById(fakeContactId);
 
-    it("should get contact by id", async () => {
+    expect(getContactByIdStub.calledOnceWithExactly(fakeContactId)).to.be.true;
+  });
+  it("should update contact", async () => {
+    const fakeContactId = faker.datatype.uuid();
+    const contactData: UpdateContact = {
+      last_name: faker.datatype.string(),
+      first_name: faker.datatype.string(),
+      phone_number: faker.datatype.string(),
+      language: faker.datatype.string(),
+    };
 
-        const fakeContactId = faker.datatype.uuid()
-       
-        const getContactByIdStub = sandbox.stub(contact, 'getContactById').resolves();
+    const updateContactStub = sandbox.stub(contact, "updateContact").resolves();
 
-        await contact.getContactById(fakeContactId)
+    await contact.updateContact(fakeContactId, contactData);
 
-        expect(getContactByIdStub.calledOnceWithExactly(fakeContactId)).to.be.true;
-    })
-    it("should update contact", async ()=> {
-        
-        const fakeContactId = faker.datatype.uuid()
-        const contactData: UpdateContact = {
-            last_name: faker.datatype.string(),
-            first_name: faker.datatype.string(),
-            phone_number: faker.datatype.string(),
-            language: faker.datatype.string(),
-        }
+    expect(updateContactStub.calledOnce).to.be.true;
+  });
 
-        const updateContactStub = sandbox.stub(contact, 'updateContact').resolves();
+  it("should  delete contact", async () => {
+    const fakeContactId = faker.datatype.uuid();
 
-        await contact.updateContact(fakeContactId, contactData)
+    const deleteContactStub = sandbox.stub(contact, "deleteContact").resolves();
 
-        expect(updateContactStub.calledOnce).to.be.true;
+    await contact.deleteContact(fakeContactId);
 
-    })
-
-    it("should  delete contact", async ()=> {
-        
-        const fakeContactId = faker.datatype.uuid()
-      
-        const deleteContactStub = sandbox.stub(contact, 'deleteContact').resolves();
-
-        await contact.deleteContact(fakeContactId)
-
-        expect(deleteContactStub.calledOnce).to.be.true;
-    })
-
+    expect(deleteContactStub.calledOnce).to.be.true;
+  });
 });
-

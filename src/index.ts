@@ -11,34 +11,32 @@ import { Webhooks } from "./resources/webhooks";
 import { Subscriptions } from "./resources/subscriptions";
 import { Medias } from "./resources/medias";
 
-
 export class OurVoice {
+  account: Accounts;
+  campaign: Campaigns;
+  contact: Contacts;
+  flow: Flows;
+  group: Groups;
+  media: Medias;
+  message: Messages;
+  number: Numbers;
+  step: Steps;
+  voice: Voices;
+  subscription: Subscriptions;
+  webhook: Webhooks;
 
-    account: Accounts
-    campaign: Campaigns
-    contact: Contacts
-    flow: Flows
-    group: Groups
-    media: Medias
-    message: Messages;
-    number: Numbers
-    step: Steps
-    voice: Voices
-    subscription: Subscriptions
-    webhook: Webhooks
-
-    constructor(config: { apiKey: string }) {
-        this.account = new Accounts(config)
-        this.campaign = new Campaigns(config)
-        this.contact = new Contacts(config)
-        this.flow = new Flows(config)
-        this.group = new Groups(config)
-        this.message = new Messages(config)
-        this.number = new Numbers(config)
-        this.step = new Steps(config)
-        this.voice = new Voices(config)
-        this.subscription = new Subscriptions(config)
-        this.webhook = new Webhooks(config)
-        this.media = new Medias(config)
-    }
+  constructor(config: { apiKey: string }) {
+    this.account = new Accounts(config);
+    this.campaign = new Campaigns(config);
+    this.contact = new Contacts(config);
+    this.flow = new Flows(config);
+    this.group = new Groups(config);
+    this.message = new Messages(config);
+    this.number = new Numbers(config);
+    this.step = new Steps(config);
+    this.voice = new Voices(config);
+    this.subscription = new Subscriptions(config);
+    this.webhook = new Webhooks(config);
+    this.media = new Medias(config);
+  }
 }
