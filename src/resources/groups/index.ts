@@ -40,4 +40,10 @@ export class Groups extends Base {
       body: JSON.stringify(group),
     });
   }
+
+    addContactToGroup( groupId: string, contactId: string):Promise<any>{
+      return this.invoke(`/${resource}/${groupId}/contacts/${contactId}`, {
+        method: "PATCH"
+      });
+    }
 }
