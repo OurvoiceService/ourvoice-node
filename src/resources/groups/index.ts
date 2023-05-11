@@ -7,18 +7,10 @@ export class Groups extends Base {
     return this.invoke(`/${resource}/${id}`);
   }
 
-  async getGroups() {
-    let groups;
-    try {
-      groups = await this.invoke(`/${resource}`, {
+  getGroups() {
+      return this.invoke(`/${resource}`, {
         method: "GET",
       });
-    } catch (error) {
-      console.log({ error });
-      throw new Error(error);
-    }
-
-    return groups;
   }
 
   createGroup(newGroup: NewGroup): Promise<any> {
