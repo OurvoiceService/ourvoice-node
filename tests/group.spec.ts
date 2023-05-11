@@ -87,8 +87,17 @@ describe("Groups", () => {
 
     expect(deleteGroupStub.calledOnce).to.be.true;
   });
+
+  it("add contact to group", async () => {
+    const fakeGroupId = faker.datatype.uuid();
+    const fakeContactId = faker.datatype.uuid();
+
+    const addContactToGroupStub = sandbox.stub(groups, "addContactToGroup").resolves();
+
+    await groups.addContactToGroup(fakeGroupId, fakeContactId);
+
+    expect(addContactToGroupStub.calledOnce).to.be.true;
+  });
+
 });
 
-function now(): any {
-  throw new Error("Function not implemented.");
-}
