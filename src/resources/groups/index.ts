@@ -41,9 +41,9 @@ export class Groups extends Base {
     });
   }
 
-    addContactToGroup( groupId: string, contactId: string):Promise<any>{
-      return this.invoke(`/${resource}/${groupId}/contacts/${contactId}`, {
-        method: "PATCH"
-      });
-    }
+  addContactToGroup(groupId: string, contactId: string): Promise<any> {
+    return this.invoke(`/${resource}/${groupId}/contacts/${contactId}`, {
+      method: "PATCH",
+    });
+  }
 }

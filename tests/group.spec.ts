@@ -92,12 +92,12 @@ describe("Groups", () => {
     const fakeGroupId = faker.datatype.uuid();
     const fakeContactId = faker.datatype.uuid();
 
-    const addContactToGroupStub = sandbox.stub(groups, "addContactToGroup").resolves();
+    const addContactToGroupStub = sandbox
+      .stub(groups, "addContactToGroup")
+      .resolves();
 
     await groups.addContactToGroup(fakeGroupId, fakeContactId);
 
     expect(addContactToGroupStub.calledOnce).to.be.true;
   });
-
 });
-
