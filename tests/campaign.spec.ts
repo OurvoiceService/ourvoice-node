@@ -1,110 +1,97 @@
-import { Campaigns } from "../src/resources/Campaigns";
-import { Campaign, NewCampaign } from "../src/resources/Campaigns/type"
-import sinon, { SinonStub } from 'sinon';
-import { expect, assert } from 'chai';
+import { Campaigns } from "../src/resources/campaigns";
+import { Campaign, NewCampaign } from "../src/resources/campaigns/type";
+import sinon, { SinonStub } from "sinon";
+import { expect, assert } from "chai";
 
 import { faker } from "@faker-js/faker";
-describe('Compaign test', () => {
+describe("Compaign test", () => {
+  let campaign: Campaigns;
 
-    let campaign: Campaigns;
+  let sandbox: sinon.SinonSandbox;
 
-    let sandbox: sinon.SinonSandbox;
-
-    beforeEach(() => {
-        sandbox = sinon.createSandbox()
-        campaign = new Campaigns({
-            apiKey: "api token"
-        })
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    campaign = new Campaigns({
+      apiKey: "api token",
     });
+  });
 
-    afterEach(() => {
-        sandbox.restore();
-    });
+  afterEach(() => {
+    sandbox.restore();
+  });
 
+  it("should get all campaigns", async () => {
+    const getCompainStub = sandbox.stub(campaign, "getCampaigns").resolves();
 
-    it("should get all campaigns", async () => {
+    await campaign.getCampaigns();
 
-        const getCompainStub = sandbox.stub(campaign, 'getCampaigns').resolves();
+    expect(getCompainStub.calledOnce).to.be.true;
+  });
 
-        await campaign.getCampaigns()
+  it("should create campaign", async () => {
+    const newCompagne: NewCampaign = {
+      body: faker.datatype.string(),
+      sender_id: faker.datatype.string(),
+      group_ids: [faker.datatype.uuid()],
+      type: "sms",
+      name: faker.name.fullName(),
+      repeat: "never",
+      start_date: faker.datatype.datetime(),
+      end_date: faker.datatype.datetime(),
+    };
 
-        expect(getCompainStub.calledOnce).to.be.true;
-    })
+    const createCompainStub = sandbox
+      .stub(campaign, "createCampaign")
+      .resolves();
 
-    it("should create campaign", async () => {
+    const a = await campaign.createCampaign(newCompagne);
 
-        const newCompagne: NewCampaign = {
-            body: faker.datatype.string(),
-            sender_id: faker.datatype.string(),
-            group: faker.datatype.json,
-            type: faker.datatype.string(),
-            voices: faker.internet.url(),
-            messages: faker.datatype.string(),
-            name: faker.name.fullName(),
-            repeat: faker.datatype.string(),
-            start_date: faker.datatype.datetime(),
-            end_date: faker.datatype.datetime(),
-            status: faker.datatype.string(),
-        }
+    expect(createCompainStub.calledOnce).to.be.true;
+  });
 
-        const createCompainStub = sandbox.stub(campaign, 'createCampaign').resolves();
+  it("should get compaign by id", async () => {
+    const fakeCompaignId = faker.datatype.uuid();
 
-        const a = await campaign.createCampaign(newCompagne)
+    const getCompainByIdStub = sandbox
+      .stub(campaign, "getCampaignById")
+      .resolves();
 
-        expect(createCompainStub.calledOnce).to.be.true;
-    })
+    await campaign.getCampaignById(fakeCompaignId);
 
-    it("should get compaign by id", async () => {
+    expect(getCompainByIdStub.calledOnceWithExactly(fakeCompaignId)).to.be.true;
+  });
 
-        const fakeCompaignId = faker.datatype.uuid()
-       
-        const getCompainByIdStub = sandbox.stub(campaign, 'getCampaignById').resolves();
+  it("should update compaign", async () => {
+    const fakeCompaignId = faker.datatype.uuid();
+    const updateCompagne: NewCampaign = {
+      body: faker.datatype.string(),
+      sender_id: faker.datatype.string(),
+      group_ids: [faker.datatype.uuid()],
+      type: "sms",
+      name: faker.name.fullName(),
+      repeat: "never",
+      start_date: faker.datatype.datetime(),
+      end_date: faker.datatype.datetime(),
+    };
 
-        await campaign.getCampaignById(fakeCompaignId)
+    const updateCompainStub = sandbox
+      .stub(campaign, "updateCampaign")
+      .resolves();
 
-        expect(getCompainByIdStub.calledOnceWithExactly(fakeCompaignId)).to.be.true;
-    })
+    await campaign.updateCampaign(fakeCompaignId, updateCompagne);
 
-    it("should update compaign", async ()=> {
-        
-        const fakeCompaignId = faker.datatype.uuid()
-        const newCompagne: NewCampaign = {
-            body: faker.datatype.string(),
-            sender_id: faker.datatype.string(),
-            group: faker.datatype.json,
-            type: faker.datatype.string(),
-            voices: faker.internet.url(),
-            messages: faker.datatype.string(),
-            name: faker.name.fullName(),
-            repeat: faker.datatype.string(),
-            start_date: faker.datatype.datetime(),
-            end_date: faker.datatype.datetime(),
-            status: faker.datatype.string(),
-        }
+    expect(updateCompainStub.calledOnce).to.be.true;
+  });
 
-        const updateCompainStub = sandbox.stub(campaign, 'updateCampaign').resolves();
+  it("should delete compaign", async () => {
+    const fakeCompaignId = faker.datatype.uuid();
 
-        await campaign.updateCampaign(fakeCompaignId, newCompagne)
+    const deleteCompainStub = sandbox
+      .stub(campaign, "deleteCampaign")
+      .resolves();
 
-        expect(updateCompainStub.calledOnce).to.be.true;
+    await campaign.deleteCampaign(fakeCompaignId);
 
-    })
-
-    it("should delete compaign", async ()=> {
-        
-        const fakeCompaignId = faker.datatype.uuid()
-
-        const deleteCompainStub = sandbox.stub(campaign, 'deleteCampaign').resolves();
-
-        await campaign.deleteCampaign(fakeCompaignId)
-
-        expect(deleteCompainStub.calledOnce).to.be.true;
-
-    })
-
+    expect(deleteCompainStub.calledOnce).to.be.true;
+  });
 });
-
-function now(): any {
-    throw new Error("Function not implemented.");
-}
-

@@ -1,38 +1,33 @@
 import { Base } from "../base";
-import { Voice,  NewVoice } from "./type";
+import { Voice, NewVoice, VoiceList, VoiceIds } from "./type";
 
-const resources = "calls"
-const resource = "call"
-const voice = "voices"
-export class Voices extends Base{
+const resources = "calls";
 
-    getVoices(): Promise<any>{
-        return this.invoke(`/${voice}`, {
-            method: "GET"
-        })
-    }
-    
-    sendVoiceCall(newVoice: NewVoice): Promise<Voice>{
- 
-        return this.invoke(`/${resource}`, {
-            method: "POST", 
-            body: JSON.stringify(newVoice)
-        })
-    }
+export class Voices extends Base {
+  getVoices(): Promise<VoiceList> {
+    return this.invoke(`/${resources}`, {
+      method: "GET",
+    });
+  }
 
-    getCalls(): Promise<any>{
- 
-        return this.invoke(`/${resources}`, {
-            method: "GET", 
-        })
-    }
+  sendVoiceCall(newVoice: NewVoice): Promise<Voice> {
+    return this.invoke(`/${resources}`, {
+      method: "POST",
+      body: JSON.stringify(newVoice),
+    });
+  }
 
-    deleteCall(id: string): Promise<any>{
- 
-        return this.invoke(`/${resources}/${id}`, {
-            method: "DELETE", 
-            body: JSON.stringify(id)
-        })
-    }
+  deleteVoice(id: string): Promise<any> {
+    return this.invoke(`/${resources}/${id}`, {
+      method: "DELETE",
+      body: JSON.stringify(id),
+    });
+  }
 
+  deleteVoices(voicesIds: VoiceIds): Promise<any> {
+    return this.invoke(`/${resources}/bulk`, {
+      method: "DELETE",
+      body: JSON.stringify(voicesIds),
+    });
+  }
 }
