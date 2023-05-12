@@ -1,4 +1,4 @@
-import {Subscription} from "../subscriptions/type";
+import { Subscription } from "../subscriptions/type";
 
 export declare type Account = {
   id: string;
