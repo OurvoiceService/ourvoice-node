@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { Group, GroupList, NewGroup } from "./type";
+import { Group, GroupList,ConctactIds, NewGroup } from "./type";
 
 const resource = "groups";
 export class Groups extends Base {
@@ -43,7 +43,14 @@ export class Groups extends Base {
 
     addContactToGroup( groupId: string, contactId: string):Promise<any>{
       return this.invoke(`/${resource}/${groupId}/contacts/${contactId}`, {
-        method: "PATCH"
+        method: "PUT"
+      });
+    }
+
+    addContactsToGroup( groupId: string, contactIds: ConctactIds):Promise<any>{
+      return this.invoke(`/${resource}/${groupId}/contacts`, {
+        method: "PUT",
+        body: JSON.stringify(contactIds),
       });
     }
 }

@@ -29,9 +29,15 @@ export abstract class Base {
     };
 
     let response = await fetch(url, config);
+    
+    if (response.status=== 204) {
+
+      return "Data is deleted";
+
+    }    
 
     let responseData = await response.json();
 
-    return responseData.data;
+    return responseData.data ? responseData.data : responseData;
   }
 }

@@ -17,3 +17,8 @@ export declare type GroupList = {
   links: object;
   meta: object;
 };
+
+
+export declare type ConctactIds ={
+  conctact_ids : string[]
+}
