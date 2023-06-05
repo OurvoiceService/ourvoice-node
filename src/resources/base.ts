@@ -10,7 +10,7 @@ export abstract class Base {
 
   constructor(config: Config) {
     this.apikey = config.apiKey;
-    this.baseUrl = "https://staging.getourvoice.com/api/v1";
+    this.baseUrl = "https://api.getourvoice.com/v1";
   }
 
   protected async invoke<T>(
