@@ -20,10 +20,10 @@ describe("Flow", () => {
     sandbox.restore();
   });
 
-  it("should getFlows", async () => {
-    const getFlowStub = sandbox.stub(flow, "getFlows").resolves();
+  it("should getList", async () => {
+    const getFlowStub = sandbox.stub(flow, "getList").resolves();
 
-    await flow.getFlows();
+    await flow.getList();
 
     expect(getFlowStub.calledOnce).to.be.true;
   });
@@ -31,9 +31,9 @@ describe("Flow", () => {
   it("should get flow by id", async () => {
     const fakeFlowId = faker.datatype.uuid();
 
-    const getFlowStub = sandbox.stub(flow, "getFlowById").resolves();
+    const getFlowStub = sandbox.stub(flow, "read").resolves();
 
-    await flow.getFlowById(fakeFlowId);
+    await flow.read(fakeFlowId);
 
     expect(getFlowStub.calledOnceWithExactly(fakeFlowId)).to.be.true;
 
@@ -57,12 +57,12 @@ describe("Flow", () => {
       status: "paused",
     };
 
-    const updateFlowStatusStub = sandbox
-      .stub(flow, "updateFlowStatus")
+    const updateStub = sandbox
+      .stub(flow, "update")
       .resolves();
 
-    await flow.updateFlowStatus(fakeFlowId, flowStatus);
+    await flow.update(fakeFlowId, flowStatus);
 
-    expect(updateFlowStatusStub.calledOnce).to.be.true;
+    expect(updateStub.calledOnce).to.be.true;
   });
 });

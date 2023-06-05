@@ -20,20 +20,20 @@ describe("Steps", () => {
   });
 
   it("should get all Steps", async () => {
-    const getStepsStub = sandbox.stub(step, "getSteps").resolves();
+    const getListStub = sandbox.stub(step, "getList").resolves();
 
-    await step.getSteps();
+    await step.getList();
 
-    expect(getStepsStub.calledOnce).to.be.true;
+    expect(getListStub.calledOnce).to.be.true;
   });
 
   it("should get step by id", async () => {
     const fakeStepId = faker.datatype.uuid();
 
-    const getStepByIdStub = sandbox.stub(step, "getStepById").resolves();
+    const readStub = sandbox.stub(step, "read").resolves();
 
-    await step.getStepById(fakeStepId);
+    await step.read(fakeStepId);
 
-    expect(getStepByIdStub.calledOnceWithExactly(fakeStepId)).to.be.true;
+    expect(readStub.calledOnceWithExactly(fakeStepId)).to.be.true;
   });
 });

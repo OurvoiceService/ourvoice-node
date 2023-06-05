@@ -1,32 +1,32 @@
 import { Base } from "../base";
-import { Group, GroupList,ConctactIds, NewGroup } from "./type";
+import { Group, GroupList, ConctactIds, NewGroup } from "./type";
 
 const resource = "groups";
 export class Groups extends Base {
-  getGroupById(id: string): Promise<Group> {
+  read(id: string): Promise<Group> {
     return this.invoke(`/${resource}/${id}`);
   }
 
-  getGroups() {
+  getList() {
       return this.invoke(`/${resource}`, {
         method: "GET",
       });
   }
 
-  createGroup(newGroup: NewGroup): Promise<any> {
+  create(newGroup: NewGroup): Promise<any> {
     return this.invoke(`/${resource}`, {
       method: "POST",
       body: JSON.stringify(newGroup),
     });
   }
 
-  deleteGroup(id: string): Promise<any> {
+  delete(id: string): Promise<any> {
     return this.invoke(`/${resource}/${id}`, {
       method: "DELETE",
     });
   }
 
-  updateGroup(id: string, group: Partial<Group>): Promise<Group> {
+  update(id: string, group: Partial<Group>): Promise<Group> {
     return this.invoke(`/${resource}/${id}`, {
       method: "PATCH",
       body: JSON.stringify(group),

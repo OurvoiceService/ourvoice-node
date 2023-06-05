@@ -21,28 +21,28 @@ describe("Voice", () => {
   });
 
   it("should send voice Call", async () => {
-    const sendVoiceCallStub = sandbox.stub(voice, "sendVoiceCall").resolves();
+    const createStub = sandbox.stub(voice, "create").resolves();
 
-    await voice.sendVoiceCall({
+    await voice.create({
       to: [faker.datatype.string()],
       audio_url: faker.internet.url(),
     });
 
-    expect(sendVoiceCallStub.calledOnce).to.be.true;
+    expect(createStub.calledOnce).to.be.true;
   });
 
   it("should get all voice", async () => {
-    const getVoiceStub = sandbox.stub(voice, "getVoices").resolves();
+    const getVoiceStub = sandbox.stub(voice, "getList").resolves();
 
-    await voice.getVoices();
+    await voice.getList();
 
     expect(getVoiceStub.calledOnce).to.be.true;
   });
 
   it("should get all voice", async () => {
-    const getVoiceStub = sandbox.stub(voice, "getVoices").resolves();
+    const getVoiceStub = sandbox.stub(voice, "getList").resolves();
 
-    await voice.getVoices();
+    await voice.getList();
 
     expect(getVoiceStub.calledOnce).to.be.true;
   });
