@@ -29,7 +29,7 @@ const client = new OurVoice({
 
 // get all groups
 
-client.groups.getGroups().then((groups) => {
+client.groups.getList().then((groups) => {
   console.log(groups);
 });
 ```
