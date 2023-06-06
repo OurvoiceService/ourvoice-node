@@ -21,9 +21,9 @@ describe("Medias", () => {
   });
 
   it("should get all Medias", async () => {
-    const getMediaStub = sandbox.stub(media, "getMedias").resolves();
+    const getMediaStub = sandbox.stub(media, "getList").resolves();
 
-    await media.getMedias();
+    await media.getList();
 
     expect(getMediaStub.calledOnce).to.be.true;
   });
@@ -32,9 +32,9 @@ describe("Medias", () => {
     let fakeMedia: NewMedia = {
       file: faker.datatype.string(),
     };
-    const saveStub = sandbox.stub(media, "saveMedia").resolves();
+    const saveStub = sandbox.stub(media, "create").resolves();
 
-    await media.saveMedia(fakeMedia);
+    await media.create(fakeMedia);
 
     expect(saveStub.calledOnce).to.be.true;
   });
@@ -42,11 +42,11 @@ describe("Medias", () => {
   it("should get media by id", async () => {
     const fakeMediaId = faker.datatype.uuid();
 
-    const getMediaByIdStub = sandbox.stub(media, "getMediaById").resolves();
+    const readStub = sandbox.stub(media, "read").resolves();
 
-    await media.getMediaById(fakeMediaId);
+    await media.read(fakeMediaId);
 
-    expect(getMediaByIdStub.calledOnceWithExactly(fakeMediaId)).to.be.true;
+    expect(readStub.calledOnceWithExactly(fakeMediaId)).to.be.true;
   });
 
   it("should update media", async () => {
@@ -57,20 +57,20 @@ describe("Medias", () => {
       type: faker.datatype.string(),
     };
 
-    const updateMediaStub = sandbox.stub(media, "updateMedia").resolves();
+    const updateStub = sandbox.stub(media, "update").resolves();
 
-    await media.updateMedia(fakeMediaId, mediaData);
+    await media.update(fakeMediaId, mediaData);
 
-    expect(updateMediaStub.calledOnce).to.be.true;
+    expect(updateStub.calledOnce).to.be.true;
   });
 
   it("should  delete media", async () => {
     const fakeMediaId = faker.datatype.uuid();
 
-    const deleteMediaStub = sandbox.stub(media, "deleteMedia").resolves();
+    const deleteStub = sandbox.stub(media, "delete").resolves();
 
-    await media.deleteMedia(fakeMediaId);
+    await media.delete(fakeMediaId);
 
-    expect(deleteMediaStub.calledOnce).to.be.true;
+    expect(deleteStub.calledOnce).to.be.true;
   });
 });

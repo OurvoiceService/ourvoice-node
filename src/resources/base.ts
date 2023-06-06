@@ -10,7 +10,7 @@ export abstract class Base {
 
   constructor(config: Config) {
     this.apikey = config.apiKey;
-    this.baseUrl = "https://staging.getourvoice.com/api/v1";
+    this.baseUrl = "https://api.getourvoice.com/v1";
   }
 
   protected async invoke<T>(
@@ -29,9 +29,15 @@ export abstract class Base {
     };
 
     let response = await fetch(url, config);
+    
+    if (response.status === 204) {
+
+      return "Data is deleted";
+
+    }    
 
     let responseData = await response.json();
 
-    return responseData.data;
+    return responseData.data ? responseData.data : responseData;
   }
 }

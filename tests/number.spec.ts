@@ -20,9 +20,9 @@ describe("Numbers", () => {
   });
 
   it("should get all Numbers", async () => {
-    const getNumberStub = sandbox.stub(number, "getNumbers").resolves();
+    const getNumberStub = sandbox.stub(number, "getList").resolves();
 
-    await number.getNumbers();
+    await number.getList();
 
     expect(getNumberStub.calledOnce).to.be.true;
   });
@@ -30,10 +30,10 @@ describe("Numbers", () => {
   it("should get number by id", async () => {
     const fakeNumberId = faker.datatype.uuid();
 
-    const getNumberByIdStub = sandbox.stub(number, "getNumberById").resolves();
+    const readStub = sandbox.stub(number, "read").resolves();
 
-    await number.getNumberById(fakeNumberId);
+    await number.read(fakeNumberId);
 
-    expect(getNumberByIdStub.calledOnceWithExactly(fakeNumberId)).to.be.true;
+    expect(readStub.calledOnceWithExactly(fakeNumberId)).to.be.true;
   });
 });

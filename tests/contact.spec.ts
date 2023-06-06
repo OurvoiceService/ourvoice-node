@@ -25,9 +25,9 @@ describe("Contacts", () => {
   });
 
   it("should get all Contacts", async () => {
-    const getContactStub = sandbox.stub(contact, "getContacts").resolves();
+    const getContactStub = sandbox.stub(contact, "getList").resolves();
 
-    await contact.getContacts();
+    await contact.getList();
 
     expect(getContactStub.calledOnce).to.be.true;
   });
@@ -40,9 +40,9 @@ describe("Contacts", () => {
       language: faker.lorem.word(),
     };
 
-    const saveStub = sandbox.stub(contact, "createContact").resolves();
+    const saveStub = sandbox.stub(contact, "create").resolves();
 
-    await contact.createContact(fakeContact);
+    await contact.create(fakeContact);
 
     expect(saveStub.calledOnce).to.be.true;
   });
@@ -50,13 +50,13 @@ describe("Contacts", () => {
   it("should get contact by id", async () => {
     const fakeContactId = faker.datatype.uuid();
 
-    const getContactByIdStub = sandbox
-      .stub(contact, "getContactById")
+    const readStub = sandbox
+      .stub(contact, "read")
       .resolves();
 
-    await contact.getContactById(fakeContactId);
+    await contact.read(fakeContactId);
 
-    expect(getContactByIdStub.calledOnceWithExactly(fakeContactId)).to.be.true;
+    expect(readStub.calledOnceWithExactly(fakeContactId)).to.be.true;
   });
   it("should update contact", async () => {
     const fakeContactId = faker.datatype.uuid();
@@ -67,20 +67,20 @@ describe("Contacts", () => {
       language: faker.datatype.string(),
     };
 
-    const updateContactStub = sandbox.stub(contact, "updateContact").resolves();
+    const updateStub = sandbox.stub(contact, "update").resolves();
 
-    await contact.updateContact(fakeContactId, contactData);
+    await contact.update(fakeContactId, contactData);
 
-    expect(updateContactStub.calledOnce).to.be.true;
+    expect(updateStub.calledOnce).to.be.true;
   });
 
   it("should  delete contact", async () => {
     const fakeContactId = faker.datatype.uuid();
 
-    const deleteContactStub = sandbox.stub(contact, "deleteContact").resolves();
+    const deleteStub = sandbox.stub(contact, "delete").resolves();
 
-    await contact.deleteContact(fakeContactId);
+    await contact.delete(fakeContactId);
 
-    expect(deleteContactStub.calledOnce).to.be.true;
+    expect(deleteStub.calledOnce).to.be.true;
   });
 });

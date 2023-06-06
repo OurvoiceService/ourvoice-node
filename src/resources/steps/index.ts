@@ -3,13 +3,13 @@ import { StepList, Step } from "./type";
 
 const resource = "steps";
 export class Steps extends Base {
-  getSteps(): Promise<StepList> {
+  getList(): Promise<StepList> {
     return this.invoke(`/${resource}`, {
       method: "GET",
     });
   }
 
-  getStepById(id: string): Promise<StepList> {
+  read(id: string): Promise<StepList> {
     return this.invoke(`/${resource}`, {});
   }
 }
