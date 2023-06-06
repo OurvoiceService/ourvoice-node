@@ -21,10 +21,7 @@ export class Webhooks extends Base {
     });
   }
 
-  update(
-    id: string,
-    updateWebhook: Partial<UpdateWebhook>
-  ): Promise<Webhook> {
+  update(id: string, updateWebhook: Partial<UpdateWebhook>): Promise<Webhook> {
     return this.invoke(`/${resource}/${id}`, {
       method: "PUT",
       body: JSON.stringify(updateWebhook),

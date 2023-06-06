@@ -49,9 +49,7 @@ describe("Webhooks", () => {
   it("should get webhook by id", async () => {
     const fakeWebhookId = faker.datatype.uuid();
 
-    const readStub = sandbox
-      .stub(webhook, "read")
-      .resolves();
+    const readStub = sandbox.stub(webhook, "read").resolves();
 
     await webhook.read(fakeWebhookId);
 

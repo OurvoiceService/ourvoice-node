@@ -18,7 +18,6 @@ export declare type GroupList = {
   meta: object;
 };
 
-
-export declare type ConctactIds ={
-  conctact_ids : string[]
-}
+export declare type ConctactIds = {
+  conctact_ids: string[];
+};

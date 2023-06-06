@@ -45,22 +45,17 @@ describe("Subscriptions", () => {
   it("should get subscription by id", async () => {
     const fakeSubscriptionId = faker.datatype.uuid();
 
-    const readStub = sandbox
-      .stub(subscription, "read")
-      .resolves();
+    const readStub = sandbox.stub(subscription, "read").resolves();
 
     await subscription.read(fakeSubscriptionId);
 
-    expect(readStub.calledOnceWithExactly(fakeSubscriptionId)).to
-      .be.true;
+    expect(readStub.calledOnceWithExactly(fakeSubscriptionId)).to.be.true;
   });
 
   it("should  delete subscription", async () => {
     const fakeSubscriptionId = faker.datatype.uuid();
 
-    const deleteStub = sandbox
-      .stub(subscription, "delete")
-      .resolves();
+    const deleteStub = sandbox.stub(subscription, "delete").resolves();
 
     await subscription.delete(fakeSubscriptionId);
 

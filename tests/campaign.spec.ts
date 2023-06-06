@@ -40,9 +40,7 @@ describe("Compaign test", () => {
       end_date: faker.datatype.datetime(),
     };
 
-    const createCompainStub = sandbox
-      .stub(campaign, "create")
-      .resolves();
+    const createCompainStub = sandbox.stub(campaign, "create").resolves();
 
     const a = await campaign.create(newCompagne);
 
@@ -52,9 +50,7 @@ describe("Compaign test", () => {
   it("should get compaign by id", async () => {
     const fakeCompaignId = faker.datatype.uuid();
 
-    const getCompainByIdStub = sandbox
-      .stub(campaign, "read")
-      .resolves();
+    const getCompainByIdStub = sandbox.stub(campaign, "read").resolves();
 
     await campaign.read(fakeCompaignId);
 
@@ -74,9 +70,7 @@ describe("Compaign test", () => {
       end_date: faker.datatype.datetime(),
     };
 
-    const updateCompainStub = sandbox
-      .stub(campaign, "update")
-      .resolves();
+    const updateCompainStub = sandbox.stub(campaign, "update").resolves();
 
     await campaign.update(fakeCompaignId, updateCompagne);
 
@@ -86,9 +80,7 @@ describe("Compaign test", () => {
   it("should delete compaign", async () => {
     const fakeCompaignId = faker.datatype.uuid();
 
-    const deleteCompainStub = sandbox
-      .stub(campaign, "delete")
-      .resolves();
+    const deleteCompainStub = sandbox.stub(campaign, "delete").resolves();
 
     await campaign.delete(fakeCompaignId);
 

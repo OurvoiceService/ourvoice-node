@@ -29,9 +29,7 @@ describe("Account", () => {
   });
 
   it("should get account balance", async () => {
-    const getAccountBalanceStub = sandbox
-      .stub(account, "balance")
-      .resolves();
+    const getAccountBalanceStub = sandbox.stub(account, "balance").resolves();
 
     await account.balance();
 
@@ -41,9 +39,7 @@ describe("Account", () => {
   it("should get account by id", async () => {
     const fakeAccountId = faker.datatype.uuid();
 
-    const readStub = sandbox
-      .stub(account, "read")
-      .resolves();
+    const readStub = sandbox.stub(account, "read").resolves();
 
     await account.read(fakeAccountId);
 

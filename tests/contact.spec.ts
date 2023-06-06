@@ -50,9 +50,7 @@ describe("Contacts", () => {
   it("should get contact by id", async () => {
     const fakeContactId = faker.datatype.uuid();
 
-    const readStub = sandbox
-      .stub(contact, "read")
-      .resolves();
+    const readStub = sandbox.stub(contact, "read").resolves();
 
     await contact.read(fakeContactId);
 

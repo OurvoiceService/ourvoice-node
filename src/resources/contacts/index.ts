@@ -26,10 +26,7 @@ export class Contacts extends Base {
     });
   }
 
-  update(
-    id: string,
-    contactData: Partial<UpdateContact>
-  ): Promise<Contact> {
+  update(id: string, contactData: Partial<UpdateContact>): Promise<Contact> {
     return this.invoke(`/${resources}/${id}`, {
       method: "PUT",
       body: JSON.stringify(contactData),

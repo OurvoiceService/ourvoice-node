@@ -57,9 +57,7 @@ describe("Flow", () => {
       status: "paused",
     };
 
-    const updateStub = sandbox
-      .stub(flow, "update")
-      .resolves();
+    const updateStub = sandbox.stub(flow, "update").resolves();
 
     await flow.update(fakeFlowId, flowStatus);
 

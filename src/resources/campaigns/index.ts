@@ -20,10 +20,7 @@ export class Campaigns extends Base {
     });
   }
 
-  update(
-    id: string,
-    newCampagne: Partial<NewCampaign>
-  ): Promise<Campaign> {
+  update(id: string, newCampagne: Partial<NewCampaign>): Promise<Campaign> {
     return this.invoke(`/${resource}`, {
       method: "POST",
       body: JSON.stringify(newCampagne),

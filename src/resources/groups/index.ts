@@ -8,9 +8,9 @@ export class Groups extends Base {
   }
 
   getList() {
-      return this.invoke(`/${resource}`, {
-        method: "GET",
-      });
+    return this.invoke(`/${resource}`, {
+      method: "GET",
+    });
   }
 
   create(newGroup: NewGroup): Promise<any> {
@@ -33,16 +33,16 @@ export class Groups extends Base {
     });
   }
 
-    addContactToGroup( groupId: string, contactId: string):Promise<any>{
-      return this.invoke(`/${resource}/${groupId}/contacts/${contactId}`, {
-        method: "PUT"
-      });
-    }
+  addContactToGroup(groupId: string, contactId: string): Promise<any> {
+    return this.invoke(`/${resource}/${groupId}/contacts/${contactId}`, {
+      method: "PUT",
+    });
+  }
 
-    addContactsToGroup( groupId: string, contactIds: ConctactIds):Promise<any>{
-      return this.invoke(`/${resource}/${groupId}/contacts`, {
-        method: "PUT",
-        body: JSON.stringify(contactIds),
-      });
-    }
+  addContactsToGroup(groupId: string, contactIds: ConctactIds): Promise<any> {
+    return this.invoke(`/${resource}/${groupId}/contacts`, {
+      method: "PUT",
+      body: JSON.stringify(contactIds),
+    });
+  }
 }
