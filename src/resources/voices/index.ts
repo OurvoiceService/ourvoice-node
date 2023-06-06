@@ -24,7 +24,7 @@ export class Voices extends Base {
     });
   }
 
-  deletes(voicesIds: VoiceIds): Promise<any> {
+  deleteVoices(voicesIds: VoiceIds): Promise<any> {
     return this.invoke(`/${resources}/bulk`, {
       method: "DELETE",
       body: JSON.stringify(voicesIds),
