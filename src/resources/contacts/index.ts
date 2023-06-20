@@ -9,34 +9,31 @@ import {
 
 const resources = "contacts";
 export class Contacts extends Base {
-  getContactById(id: string): Promise<Contact> {
+  read(id: string): Promise<Contact> {
     return this.invoke(`/${resources}/${id}`);
   }
 
-  getContacts(): Promise<ContactList> {
+  getList(): Promise<ContactList> {
     return this.invoke(`/${resources}`, {
       method: "GET",
     });
   }
 
-  createContact(newContact: NewContact): Promise<Contact> {
+  create(newContact: NewContact): Promise<Contact> {
     return this.invoke(`/${resources}`, {
       method: "POST",
       body: JSON.stringify(newContact),
     });
   }
 
-  updateContact(
-    id: string,
-    contactData: Partial<UpdateContact>
-  ): Promise<Contact> {
+  update(id: string, contactData: Partial<UpdateContact>): Promise<Contact> {
     return this.invoke(`/${resources}/${id}`, {
       method: "PUT",
       body: JSON.stringify(contactData),
     });
   }
 
-  deleteContact(id: string): Promise<any> {
+  delete(id: string): Promise<any> {
     return this.invoke(`/${resources}/${id}`, {
       method: "DELETE",
     });

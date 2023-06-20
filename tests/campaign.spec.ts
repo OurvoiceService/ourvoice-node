@@ -21,9 +21,9 @@ describe("Compaign test", () => {
   });
 
   it("should get all campaigns", async () => {
-    const getCompainStub = sandbox.stub(campaign, "getCampaigns").resolves();
+    const getCompainStub = sandbox.stub(campaign, "getList").resolves();
 
-    await campaign.getCampaigns();
+    await campaign.getList();
 
     expect(getCompainStub.calledOnce).to.be.true;
   });
@@ -40,11 +40,9 @@ describe("Compaign test", () => {
       end_date: faker.datatype.datetime(),
     };
 
-    const createCompainStub = sandbox
-      .stub(campaign, "createCampaign")
-      .resolves();
+    const createCompainStub = sandbox.stub(campaign, "create").resolves();
 
-    const a = await campaign.createCampaign(newCompagne);
+    const a = await campaign.create(newCompagne);
 
     expect(createCompainStub.calledOnce).to.be.true;
   });
@@ -52,11 +50,9 @@ describe("Compaign test", () => {
   it("should get compaign by id", async () => {
     const fakeCompaignId = faker.datatype.uuid();
 
-    const getCompainByIdStub = sandbox
-      .stub(campaign, "getCampaignById")
-      .resolves();
+    const getCompainByIdStub = sandbox.stub(campaign, "read").resolves();
 
-    await campaign.getCampaignById(fakeCompaignId);
+    await campaign.read(fakeCompaignId);
 
     expect(getCompainByIdStub.calledOnceWithExactly(fakeCompaignId)).to.be.true;
   });
@@ -74,11 +70,9 @@ describe("Compaign test", () => {
       end_date: faker.datatype.datetime(),
     };
 
-    const updateCompainStub = sandbox
-      .stub(campaign, "updateCampaign")
-      .resolves();
+    const updateCompainStub = sandbox.stub(campaign, "update").resolves();
 
-    await campaign.updateCampaign(fakeCompaignId, updateCompagne);
+    await campaign.update(fakeCompaignId, updateCompagne);
 
     expect(updateCompainStub.calledOnce).to.be.true;
   });
@@ -86,11 +80,9 @@ describe("Compaign test", () => {
   it("should delete compaign", async () => {
     const fakeCompaignId = faker.datatype.uuid();
 
-    const deleteCompainStub = sandbox
-      .stub(campaign, "deleteCampaign")
-      .resolves();
+    const deleteCompainStub = sandbox.stub(campaign, "delete").resolves();
 
-    await campaign.deleteCampaign(fakeCompaignId);
+    await campaign.delete(fakeCompaignId);
 
     expect(deleteCompainStub.calledOnce).to.be.true;
   });

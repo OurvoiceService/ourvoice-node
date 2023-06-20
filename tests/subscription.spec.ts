@@ -22,10 +22,10 @@ describe("Subscriptions", () => {
 
   it("should get all Subscriptions", async () => {
     const getSubscriptionStub = sandbox
-      .stub(subscription, "getSubscriptions")
+      .stub(subscription, "getList")
       .resolves();
 
-    await subscription.getSubscriptions();
+    await subscription.getList();
 
     expect(getSubscriptionStub.calledOnce).to.be.true;
   });
@@ -35,9 +35,9 @@ describe("Subscriptions", () => {
       plan_id: faker.datatype.uuid(),
     };
 
-    const saveStub = sandbox.stub(subscription, "newSubscription").resolves();
+    const saveStub = sandbox.stub(subscription, "create").resolves();
 
-    await subscription.newSubscription(fakeSubscription);
+    await subscription.create(fakeSubscription);
 
     expect(saveStub.calledOnce).to.be.true;
   });
@@ -45,25 +45,20 @@ describe("Subscriptions", () => {
   it("should get subscription by id", async () => {
     const fakeSubscriptionId = faker.datatype.uuid();
 
-    const getSubscriptionByIdStub = sandbox
-      .stub(subscription, "getSubscriptionById")
-      .resolves();
+    const readStub = sandbox.stub(subscription, "read").resolves();
 
-    await subscription.getSubscriptionById(fakeSubscriptionId);
+    await subscription.read(fakeSubscriptionId);
 
-    expect(getSubscriptionByIdStub.calledOnceWithExactly(fakeSubscriptionId)).to
-      .be.true;
+    expect(readStub.calledOnceWithExactly(fakeSubscriptionId)).to.be.true;
   });
 
   it("should  delete subscription", async () => {
     const fakeSubscriptionId = faker.datatype.uuid();
 
-    const deleteSubscriptionStub = sandbox
-      .stub(subscription, "deleteSubscription")
-      .resolves();
+    const deleteStub = sandbox.stub(subscription, "delete").resolves();
 
-    await subscription.deleteSubscription(fakeSubscriptionId);
+    await subscription.delete(fakeSubscriptionId);
 
-    expect(deleteSubscriptionStub.calledOnce).to.be.true;
+    expect(deleteStub.calledOnce).to.be.true;
   });
 });

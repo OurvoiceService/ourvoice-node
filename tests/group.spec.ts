@@ -21,9 +21,9 @@ describe("Groups", () => {
   });
 
   it("should get all Groups", async () => {
-    const getGroupStub = sandbox.stub(groups, "getGroups").resolves();
+    const getGroupStub = sandbox.stub(groups, "getList").resolves();
 
-    await groups.getGroups();
+    await groups.getList();
 
     expect(getGroupStub.calledOnce).to.be.true;
   });
@@ -44,9 +44,9 @@ describe("Groups", () => {
       name: fakeGroup.name,
       description: fakeGroup.description,
     };
-    const saveStub = sandbox.stub(groups, "createGroup").resolves();
+    const saveStub = sandbox.stub(groups, "create").resolves();
 
-    await groups.createGroup(newGroup);
+    await groups.create(newGroup);
 
     // expect(saveStub).to.have.property('data');
 
@@ -56,11 +56,11 @@ describe("Groups", () => {
   it("should get group by id", async () => {
     const fakeGroupId = faker.datatype.uuid();
 
-    const getGroupByIdStub = sandbox.stub(groups, "getGroupById").resolves();
+    const readStub = sandbox.stub(groups, "read").resolves();
 
-    await groups.getGroupById(fakeGroupId);
+    await groups.read(fakeGroupId);
 
-    expect(getGroupByIdStub.calledOnceWithExactly(fakeGroupId)).to.be.true;
+    expect(readStub.calledOnceWithExactly(fakeGroupId)).to.be.true;
   });
   it("should update group", async () => {
     const fakeGroupId = faker.datatype.uuid();
@@ -71,21 +71,21 @@ describe("Groups", () => {
       contacts: faker.datatype.json,
     };
 
-    const updateGroupStub = sandbox.stub(groups, "updateGroup").resolves();
+    const updateStub = sandbox.stub(groups, "update").resolves();
 
-    await groups.updateGroup(fakeGroupId, newGroup);
+    await groups.update(fakeGroupId, newGroup);
 
-    expect(updateGroupStub.calledOnce).to.be.true;
+    expect(updateStub.calledOnce).to.be.true;
   });
 
   it("should delete group", async () => {
     const fakeGroupId = faker.datatype.uuid();
 
-    const deleteGroupStub = sandbox.stub(groups, "deleteGroup").resolves();
+    const deleteStub = sandbox.stub(groups, "delete").resolves();
 
-    await groups.deleteGroup(fakeGroupId);
+    await groups.delete(fakeGroupId);
 
-    expect(deleteGroupStub.calledOnce).to.be.true;
+    expect(deleteStub.calledOnce).to.be.true;
   });
 
   it("add contact to group", async () => {

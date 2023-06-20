@@ -25,9 +25,9 @@ describe("Webhooks", () => {
   });
 
   it("should get all Webhooks", async () => {
-    const getWebhookStub = sandbox.stub(webhook, "getWebhooks").resolves();
+    const getWebhookStub = sandbox.stub(webhook, "getList").resolves();
 
-    await webhook.getWebhooks();
+    await webhook.getList();
 
     expect(getWebhookStub.calledOnce).to.be.true;
   });
@@ -39,9 +39,9 @@ describe("Webhooks", () => {
       event_types: ["sms.sent"],
     };
 
-    const saveStub = sandbox.stub(webhook, "createWebhook").resolves();
+    const saveStub = sandbox.stub(webhook, "create").resolves();
 
-    await webhook.createWebhook(fakeWebhook);
+    await webhook.create(fakeWebhook);
 
     expect(saveStub.calledOnce).to.be.true;
   });
@@ -49,13 +49,11 @@ describe("Webhooks", () => {
   it("should get webhook by id", async () => {
     const fakeWebhookId = faker.datatype.uuid();
 
-    const getWebhookByIdStub = sandbox
-      .stub(webhook, "getWebhookById")
-      .resolves();
+    const readStub = sandbox.stub(webhook, "read").resolves();
 
-    await webhook.getWebhookById(fakeWebhookId);
+    await webhook.read(fakeWebhookId);
 
-    expect(getWebhookByIdStub.calledOnceWithExactly(fakeWebhookId)).to.be.true;
+    expect(readStub.calledOnceWithExactly(fakeWebhookId)).to.be.true;
   });
   it("should update webhook", async () => {
     const fakeWebhookId = faker.datatype.uuid();
@@ -64,20 +62,20 @@ describe("Webhooks", () => {
       secret_hash: faker.datatype.string(),
       event_types: ["sms.sent"],
     };
-    const updateWebhookStub = sandbox.stub(webhook, "updateWebhook").resolves();
+    const updateStub = sandbox.stub(webhook, "update").resolves();
 
-    await webhook.updateWebhook(fakeWebhookId, webhookData);
+    await webhook.update(fakeWebhookId, webhookData);
 
-    expect(updateWebhookStub.calledOnce).to.be.true;
+    expect(updateStub.calledOnce).to.be.true;
   });
 
   it("should  delete webhook", async () => {
     const fakeWebhookId = faker.datatype.uuid();
 
-    const deleteWebhookStub = sandbox.stub(webhook, "deleteWebhook").resolves();
+    const deleteStub = sandbox.stub(webhook, "delete").resolves();
 
-    await webhook.deleteWebhook(fakeWebhookId);
+    await webhook.delete(fakeWebhookId);
 
-    expect(deleteWebhookStub.calledOnce).to.be.true;
+    expect(deleteStub.calledOnce).to.be.true;
   });
 });

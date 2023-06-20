@@ -20,10 +20,10 @@ describe("Message", () => {
     sandbox.restore();
   });
 
-  it("should getMessages", async () => {
-    const getMessageStub = sandbox.stub(message, "getMessages").resolves();
+  it("should getList", async () => {
+    const getMessageStub = sandbox.stub(message, "getList").resolves();
 
-    await message.getMessages();
+    await message.getList();
 
     expect(getMessageStub.calledOnce).to.be.true;
   });
@@ -35,9 +35,9 @@ describe("Message", () => {
       sender_id: faker.datatype.uuid(),
     };
 
-    const saveStub = sandbox.stub(message, "sendMessage").resolves();
+    const saveStub = sandbox.stub(message, "create").resolves();
 
-    await message.sendMessage(fakeMessage);
+    await message.create(fakeMessage);
 
     expect(saveStub.calledOnce).to.be.true;
   });
@@ -57,9 +57,9 @@ describe("Message", () => {
       created_at: faker.datatype.datetime(),
       updated_at: faker.datatype.datetime(),
     };
-    const getMessageStub = sandbox.stub(message, "getMessageById").resolves();
+    const getMessageStub = sandbox.stub(message, "read").resolves();
 
-    await message.getMessageById(fakeMessageId);
+    await message.read(fakeMessageId);
 
     expect(getMessageStub.calledOnceWithExactly(fakeMessageId)).to.be.true;
 
@@ -69,11 +69,11 @@ describe("Message", () => {
   it("should delete message", async () => {
     const fakeMessageId = faker.datatype.uuid();
 
-    const deleteMessageStub = sandbox.stub(message, "deleteMessage").resolves();
+    const deleteStub = sandbox.stub(message, "delete").resolves();
 
-    await message.deleteMessage(fakeMessageId);
+    await message.delete(fakeMessageId);
 
-    expect(deleteMessageStub.calledOnceWithExactly(fakeMessageId)).to.be.true;
+    expect(deleteStub.calledOnceWithExactly(fakeMessageId)).to.be.true;
 
     //expect(result["data"]).to.be.an('object');
   });

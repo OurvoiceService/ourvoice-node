@@ -21,19 +21,17 @@ describe("Account", () => {
   });
 
   it("should get account", async () => {
-    const getAccountStub = sandbox.stub(account, "getAccounts").resolves();
+    const getAccountStub = sandbox.stub(account, "getList").resolves();
 
-    await account.getAccounts();
+    await account.getList();
 
     expect(getAccountStub.calledOnce).to.be.true;
   });
 
   it("should get account balance", async () => {
-    const getAccountBalanceStub = sandbox
-      .stub(account, "getCurrentAccountBalance")
-      .resolves();
+    const getAccountBalanceStub = sandbox.stub(account, "balance").resolves();
 
-    await account.getCurrentAccountBalance();
+    await account.balance();
 
     expect(getAccountBalanceStub.calledOnce).to.be.true;
   });
@@ -41,12 +39,10 @@ describe("Account", () => {
   it("should get account by id", async () => {
     const fakeAccountId = faker.datatype.uuid();
 
-    const getAccountByIdStub = sandbox
-      .stub(account, "getAccountById")
-      .resolves();
+    const readStub = sandbox.stub(account, "read").resolves();
 
-    await account.getAccountById(fakeAccountId);
+    await account.read(fakeAccountId);
 
-    expect(getAccountByIdStub.calledOnceWithExactly(fakeAccountId)).to.be.true;
+    expect(readStub.calledOnceWithExactly(fakeAccountId)).to.be.true;
   });
 });
