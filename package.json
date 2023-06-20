@@ -15,8 +15,7 @@
   "author": "TIC-AGRO",
   "license": "MIT",
   "dependencies": {
-    "isomorphic-unfetch": "^4.0.2",
-    "ts-mockito": "^2.6.1"
+    "isomorphic-unfetch": "^4.0.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -26,6 +25,7 @@
     "mocha": "^10.2.0",
     "prettier": "2.8.8",
     "ts-node": "^10.9.1",
-    "ts-sinon": "^2.0.2"
+    "ts-sinon": "^2.0.2",
+    "ts-mockito": "^2.6.1"
   }
 }
