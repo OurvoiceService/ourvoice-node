@@ -77,4 +77,10 @@ describe("Message", () => {
 
     //expect(result["data"]).to.be.an('object');
   });
+
+  it("should get message stats", async () => {
+    const getStatStub = sandbox.stub(message, "getStats").resolves();
+    await message.getStats();
+    expect(getStatStub.calledOnce).to.be.true;
+  });
 });

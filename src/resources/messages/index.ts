@@ -25,4 +25,10 @@ export class Messages extends Base {
       method: "DELETE",
     });
   }
+
+  getStats(): Promise<object> {
+    return this.invoke(`/stats/sms/`, {
+      method: "GET",
+    });
+  }
 }
